@@ -1,4 +1,4 @@
-# Project Name #
+# RoadTrip Mood Music #
 
 <!-- 
 > This material was originally posted [here](http://www.quora.com/What-is-Amazons-approach-to-product-development-and-product-management). It is reproduced here for posterities sake.
@@ -17,28 +17,28 @@ Once the project moves into development, the press release can be used as a touc
  -->
  
 ## Heading ##
-  > Name the product in a way the reader (i.e. your target customers) will understand.
+  > RoadTrip Mood Music
 
 ## Sub-Heading ##
-  > Describe who the market for the product is and what benefit they get. One sentence only underneath the title.
+  > Spotify playlists for people who want to see and hear what the world has to offer.
 
 ## Summary ##
-  > Give a summary of the product and the benefit. Assume the reader will not read anything else so make this paragraph good.
+  > This product generates Spotify playlists for users to listen to on road trips. It takes in information about the start and stop locations and times of the road trip, and then it generates songs based on where they will be and what the weather will be like at each point along the road. This results in a brand new playlist that is special to their road trip and aligns with the world outside.
 
 ## Problem ##
-  > Describe the problem your product solves.
+  > Road trips are unique; pre-made road trip playlists are not.
 
 ## Solution ##
-  > Describe how your product elegantly solves the problem.
+  > By taking in information about the road trip and pairing it with real-time driving and weather conditions, we are able to pick songs that perfectly align with your trip, every step of the way.
 
 ## Quote from You ##
-  > A quote from a spokesperson in your company.
+  > "This product is by far the greatest Spotify playlist generator we have yet to create."
 
 ## How to Get Started ##
-  > Describe how easy it is to get started.
+  > If you're logged in to Spotify, just type in your start and end addresses and RoadTrip Mood Music does the rest.
 
 ## Customer Quote ##
-  > Provide a quote from a hypothetical customer that describes how they experienced the benefit.
+  > "I look forward to using this product as soon as it exists!" -Kim, 31
 
 ## Closing and Call to Action ##
-  > Wrap it up and give pointers where the reader should go next.
+  > Head on over to localhost:3000 to give it a try!
