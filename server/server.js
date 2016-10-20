@@ -12,7 +12,7 @@ var appKey = '85ae76edc4bc4a28b1338939c31bf2a4';
 var appSecret = '26e3cd2de61f4c17a2c8c07658885f40';
 
 passport.serializeUser(function(user, done) {
-  console.log("====",user);
+  console.log('====', user);
   done(null, user);
 });
 
@@ -24,7 +24,7 @@ passport.use(new SpotifyStrategy({
   clientID: appKey,
   clientSecret: appSecret,
   callbackURL: 'http://localhost:8888/callback'
-  },
+},
   function(accessToken, refreshToken, profile, done) {
     // asynchronous verification, for effect...
     process.nextTick(function () {
@@ -42,7 +42,7 @@ app.use(passport.session());
 //=============================================
 
 app.use(express.static(path.join(__dirname, '../dist')));
-app.set('views', path.join(__dirname,'../dist/view'));
+app.set('views', path.join(__dirname, '../dist/view'));
 app.engine('html', require('ejs').renderFile);
 app.set('view engine', 'html');
 //app.set('view engine', 'ejs');
@@ -52,11 +52,11 @@ app.use(bodyParser.urlencoded({ extended: true }));
 
 app.get('/', function(req, res) {
   res.render('index');
-})
+});
 
 app.get('/login', function(req, res) {
   res.render('login');
-})
+});
 
 
 // GET /auth/spotify
@@ -66,10 +66,10 @@ app.get('/login', function(req, res) {
 //   back to this application at /auth/spotify/callback
 app.get('/auth/spotify',
   passport.authenticate('spotify', {scope: ['user-read-email', 'user-read-private'], showDialog: true}),
-  function(req, res){
+  function(req, res) {
 // The request will be redirected to spotify for authentication, so this
 // function will not be called.
-});
+  });
 
 // GET /auth/spotify/callback
 //   Use passport.authenticate() as route middleware to authenticate the
@@ -82,7 +82,7 @@ app.get('/callback',
     res.redirect('/');
   });
 
-app.get('/logout', function(req, res){
+app.get('/logout', function(req, res) {
   req.logout();
   res.redirect('/');
 });

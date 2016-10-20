@@ -8,17 +8,17 @@ var Header = require('../components/header');
 var API = require('../mixins/APImixin');
 
 var App = React.createClass({
-	mixins: [API],
+  mixins: [API],
 
-	render() {
-		return (
-			<div>
-			<Header />
-			<div>Index page</div>
+  render() {
+    return (
+      <div>
+      <Header />
+      <div>Index page</div>
 
-			</div>
-		)
-	}
-})
+      </div>
+    );
+  }
+});
 
-ReactDOM.render(<App />, document.getElementById('App'))
+ReactDOM.render(<App />, document.getElementById('App'));
