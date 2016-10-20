@@ -9,6 +9,7 @@ var API = require('../mixins/APImixin');
 
 var App = React.createClass({
 	mixins: [API],
+
 	render() {
 		return (
 			<div>
