@@ -15,7 +15,7 @@ var App = React.createClass({
 			<div>
 			<Header />
 			<div>Login page</div>
-
+			<a href="/auth/spotify">Login with Spotify</a>
 			</div>
 		)
 	}
