@@ -1,6 +1,6 @@
-var path = require('path')
-var webpack = require('webpack')
-var page = require('./page.json')
+var path = require('path');
+var webpack = require('webpack');
+var page = require('./page.json');
 
 module.exports = {
   cache: true,
@@ -23,6 +23,6 @@ module.exports = {
     ]
   },
   resolve: {
-        extensions: ['', '.js', '.jsx']
-    }
+    extensions: ['', '.js', '.jsx']
+  }
 };

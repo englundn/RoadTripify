@@ -5,8 +5,8 @@ var header = React.createClass({
   render() {
     return (
       <div> I am a header </div>
-    )
+    );
   }
-})
+});
 
 module.exports = header;
