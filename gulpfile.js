@@ -13,7 +13,7 @@ gulp.task('copy', function() {
       .pipe(gulp.dest('./dist/'));
 
   gulp.src(folders[2])
-      .pipe(gulp.dest('./dist/'));
+      .pipe(gulp.dest('./dist/lib'));
   
 });
 
