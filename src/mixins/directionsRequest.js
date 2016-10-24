@@ -1,5 +1,6 @@
+var googleMapsApiKey = require('../config/apiKeys').googleMapsApiKey;
 var googleMapsClient = require('@google/maps').createClient({
-  key: 'AIzaSyBsIiZH2ylVl06HgMkTzpxh9Zg9-Gr6Yz8'
+  key: googleMapsApiKey
 });
 
 // Makes a call to the google maps directions API to get route data
