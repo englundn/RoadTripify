@@ -16,10 +16,11 @@ module.exports = {
     });
       
   },
-  postApi: function(url, parameters, callback) {
+  postApi: function(url, headers, parameters, callback) {
     $.ajax({ 
       url: url,
       type: 'POST',
+      headers: headers,
       data: parameters,
       success: function(data) {
         callback(null, data);
