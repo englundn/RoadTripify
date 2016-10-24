@@ -65,7 +65,7 @@ app.get('/login', function(req, res) {
 //   the user to spotify.com. After authorization, spotify will redirect the user
 //   back to this application at /auth/spotify/callback
 app.get('/auth/spotify',
-  passport.authenticate('spotify', {scope: ['user-read-email', 'user-read-private'], showDialog: true}),
+  passport.authenticate('spotify', {scope: ['user-read-email', 'user-read-private', 'playlist-modify', 'playlist-modify-private'], showDialog: true}),
   function(req, res) {
 // The request will be redirected to spotify for authentication, so this
 // function will not be called.
@@ -90,7 +90,7 @@ app.get('/logout', function(req, res) {
 
 
 
-var port = process.env.PORT || 3000;
+var port = process.env.PORT || 8888;
 
 app.listen(port, function() {
   console.log('Server listening on port ' + port);
