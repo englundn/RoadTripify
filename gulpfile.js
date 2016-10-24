@@ -2,7 +2,7 @@ var gulp = require('gulp');
 var del = require('del');
 
 gulp.task('copy', function() {
-  var folders = ['src/**/*.html', 'src/**/*.css', 'src/lib/*.js'];
+  var folders = ['src/**/*.html', 'src/**/*.css', 'src/lib/**/*'];
   // folders.map(function(folder) {
   //  return gulp.src(folder)
   //             .pipe(gulp.dest('./dist/'));
@@ -13,7 +13,7 @@ gulp.task('copy', function() {
       .pipe(gulp.dest('./dist/'));
 
   gulp.src(folders[2])
-      .pipe(gulp.dest('./dist/'));
+      .pipe(gulp.dest('./dist/lib'));
   
 });
 
