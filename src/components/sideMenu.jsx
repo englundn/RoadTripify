@@ -4,7 +4,7 @@ var ReactDOM = require('react-dom');
 var header = React.createClass({
   render() {
     return (
-      <div className="side-nav fixed">Side Menu</div>
+      <div id="nav-mobile" className="side-nav fixed">Side Menu</div>
     )
   }
 })
