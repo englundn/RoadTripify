@@ -1,14 +1,14 @@
-var apiKey = "bZ9pAz6UosGaNDG5AfWe0wt8MGO9GGdX";
+var apiKey = "INSERT API KEY";
 
 var weatherRequest = function(latitude, longitude, datetime, callback) {
 //send get request for location key
   $.ajax({
     method: "GET",
     url: "http://dataservice.accuweather.com/locations/v1/cities/geoposition/search",
-    /*jsonp: "callback",*/
+    jsonp: "callback",
     data: { apikey: apiKey, 
       q: latitude + ',' + longitude},
-    dataType: 'json',
+    dataType: 'jsonp',
     success: function(response) {
       var locationKey = response.Key;
       //send get request for hourly forecast using location key
@@ -48,10 +48,10 @@ var weatherRequest = function(latitude, longitude, datetime, callback) {
   });
 };
 
+//for now, comment this out for mocha tests to run in browser
 module.exports = {
   weatherRequest: weatherRequest
 };
 
 // example usage
-var datezz = new Date('10-20-2016 17:48:00');
-weatherRequest('37.7836966', '-122.4111551', datezz, function(obj) { console.log(obj); });
+// weatherRequest('37.7836966', '-122.4111551', new Date('10-20-2016 17:48:00'), function(obj) { console.log(obj); });
