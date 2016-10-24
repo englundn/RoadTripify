@@ -4,7 +4,14 @@ var ReactDOM = require('react-dom');
 var header = React.createClass({
   render() {
     return (
-      <div> I am a MENU </div>
+      <div id="nav-mobile" className="side-nav fixed">
+      	<ul>
+      		<li className="nav-items">Search</li>
+      		<li className="nav-items">History</li>
+      		<li className="nav-items">Navigate</li>
+      		<li className="nav-items settings">Settings</li>
+      	</ul>
+      </div>
     )
   }
 })
