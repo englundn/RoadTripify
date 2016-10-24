@@ -1,0 +1,13 @@
+header, main {
+    padding-left: 150px;
+}
+
+@media screen and (max-width: 992px) {
+	header, main {
+	    padding-left: 0;
+	}
+}
+
+div.side-nav {
+	width:150px;
+}
