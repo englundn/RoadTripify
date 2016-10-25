@@ -84,6 +84,6 @@ module.exports = {
     var headers = {
       'Authorization': 'Bearer ' + accessToken,
     };
-    getApi(url, headers, callback);
+    deleteApi(url, headers, callback);
   }
 };
