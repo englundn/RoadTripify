@@ -34,7 +34,7 @@ function getDirections(origin, destination, departureTime, callback) {
 getDirections('San Francisco, CA', 'Seattle, WA', 
             new Date(Date.now()), 
             function(error, response) {
-              console.log(response);
+              console.log(JSON.stringify(response));
             });
 
 module.exports = {
