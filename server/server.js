@@ -3,6 +3,7 @@ var path = require('path');
 var bodyParser = require('body-parser');
 var passport = require('passport');
 var SpotifyStrategy = require('passport-spotify').Strategy;
+var db = require('./dbConfig');
 var app = express();
 
 //=============================================
