@@ -1,6 +1,7 @@
 var mongoose = require('mongoose');
 var request = require('request');
 var db = require('./dbConfig');
+var SavedPlaylistController = require('./controller/savedPlaylist');
 
 var playlistUris = {
   '1KuPMhQ4z7oIq3zdQEZP0V': 'Soak Up The Sun', /* beachy vibes */
@@ -24,21 +25,23 @@ for (var plist in playlistUris) {
     if (error) {
       console.log(error);
     } else if (!error && response.statusCode == 200) {
+
       var info = JSON.parse(body);
       var uris = [];
+
       for (var i = 0; i < info.items.length; i++ ) {
         uris.push(info.items[i].track.uri);
       }
       var uri = info.href.split('/')[info.href.split('/').length - 2];
       // console.log(uri, ' ', playlistUris[uri], ' ', uris);
 
-      new db.SavedPlaylist({
+      SavedPlaylistController({
         playlist_name:  playlistUris[uri],
         playlist_id: uri,
-        uri_array: JSON.stringify(uris)})
-      .save().then(function(entry) {
+        uri_array: JSON.stringify(uris)}, function(err, entry) {
         console.log('saved to database ', entry);
-      });
+        }
+      );
     }
   });    
 }
