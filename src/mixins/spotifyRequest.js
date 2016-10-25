@@ -1,6 +1,7 @@
 var APImixin = require('./APImixin');
 var postApi = APImixin.postApi;
 var getApi = APImixin.getApi;
+var deleteApi = APImixin.deleteApi;
 var callback = (error, data) => {
   if (error) {
     console.error(error);
@@ -63,6 +64,23 @@ module.exports = {
   //Example output:
   //
     var url = 'https://api.spotify.com/v1/users/' + userId + '/playlists/' + playlistId + '/tracks';
+    var headers = {
+      'Authorization': 'Bearer ' + accessToken,
+    };
+    getApi(url, headers, callback);
+  },
+
+  deletePlaylist: (userId, accessToken, playlistId, callback) => {
+  //Remove a playlist from a user's account
+
+  //Example inputs:
+  // var accessToken = 'BQA3dhtc591rMjLqNWz0Z2yEx28r4axd55twLXEEtL6aTw5FePlgitv-Wk9nehGCizMmP78J2jXZ_-FaFMvGH-A7PZr27WvljPNqGI9h0a6I6oKibARkmWsXsQY6zGOiICB9cGomL8_WvhW_m2jEQOS2oBTxYWqk4iISWerCOU_HqSJnx7Tn7HhskieMidO_jod4WAkOeX1DdIW3u4mXvtPDKRxsMC1NIoOE8UustDsNj3GaVL0O';
+  // var userId = '12160219974';
+  // var playlistId = '7oi0w0SLbJ4YyjrOxhZbUv';
+
+  //Example output:
+  //
+    var url = 'https://api.spotify.com/v1/users/' + userId + '/playlists/' + playlistId + '/followers';
     var headers = {
       'Authorization': 'Bearer ' + accessToken,
     };

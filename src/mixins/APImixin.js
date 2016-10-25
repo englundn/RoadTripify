@@ -31,6 +31,20 @@ module.exports = {
       }
     });
       
+  },
+  deleteApi: function(url, headers, callback) {
+    $.ajax({ 
+      url: url,
+      type: 'DELETE',
+      headers: headers,
+      success: function(data) {        
+        callback(null, data);
+      },
+      error: function(request, status, error) {
+        callback(error, null);          
+      }
+    });
+      
   }
 };
 
