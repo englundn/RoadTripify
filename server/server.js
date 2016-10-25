@@ -33,6 +33,7 @@ passport.use(new SpotifyStrategy({
       // represent the logged-in user. In a typical application, you would want
       // to associate the spotify account with a user record in your database,
       // and return that user instead.
+      console.log(accessToken);
       return done(null, profile);
     });
   }));
