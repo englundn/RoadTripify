@@ -5,7 +5,7 @@ var googleMapsClient = require('@google/maps').createClient({
 
 // Makes a call to the google maps directions API to get route data
 // https://developers.google.com/maps/documentation/javascript/directions
-function getDirections(origin, destination, departureTime, callback) {
+var getDirections = function(origin, destination, departureTime, callback) {
   
   // console.log(googleMapsClient);
   // console.log(googleMapsClient.directions);

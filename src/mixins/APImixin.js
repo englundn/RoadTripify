@@ -2,10 +2,11 @@ var React = require('react');
 
 module.exports = {
   
-  getApi: function(url, callback) {
+  getApi: function(url, headers, callback) {
     $.ajax({ 
       url: url,
       type: 'GET',
+      headers: headers,
       dataType: 'json',
       success: function(data) {        
         callback(null, data);
