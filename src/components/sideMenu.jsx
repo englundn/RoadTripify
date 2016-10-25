@@ -6,10 +6,10 @@ var header = React.createClass({
     return (
       <div id="nav-mobile" className="side-nav fixed">
       	<ul>
-      		<li className="nav-items">Search</li>
-      		<li className="nav-items">History</li>
-      		<li className="nav-items">Navigate</li>
-      		<li className="nav-items settings">Settings</li>
+          <li><a className="nav-items" href="/search.html">Search</a></li>
+          <li><a className="nav-items" href="/">History</a></li>
+      		<li><a className="nav-items" href="/">Navigate</a></li>
+      		<li><a className="nav-items settings" href="/">Settings</a></li>
       	</ul>
       </div>
     )
