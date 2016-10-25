@@ -20,7 +20,7 @@ var getDirections = function(origin, destination, departureTime, callback) {
   };
 
   googleMapsClient.directions(request, function(error, response) {
-    if(error) {
+    if (error) {
       // console.error('error', error);
       callback(error, null);
     } else {
@@ -39,4 +39,4 @@ getDirections('San Francisco, CA', 'Seattle, WA',
 
 module.exports = {
   getDirections: getDirections
-}
+};
