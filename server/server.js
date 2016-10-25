@@ -29,7 +29,6 @@ passport.use(new SpotifyStrategy({
   function(accessToken, refreshToken, profile, done) {
     // asynchronous verification, for effect...
     process.nextTick(function () {
-      console.log('access token!!!!!', accessToken);
       // To keep the example simple, the user's spotify profile is returned to
       // represent the logged-in user. In a typical application, you would want
       // to associate the spotify account with a user record in your database,
