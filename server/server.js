@@ -33,6 +33,7 @@ passport.use(new SpotifyStrategy({
       // represent the logged-in user. In a typical application, you would want
       // to associate the spotify account with a user record in your database,
       // and return that user instead.
+      console.log(accessToken);
       return done(null, profile);
     });
   }));
@@ -67,7 +68,7 @@ app.get('/login', function(req, res) {
 //   the user to spotify.com. After authorization, spotify will redirect the user
 //   back to this application at /auth/spotify/callback
 app.get('/auth/spotify',
-  passport.authenticate('spotify', {scope: ['user-read-email', 'user-read-private', 'playlist-modify', 'playlist-modify-private'], showDialog: true}),
+  passport.authenticate('spotify', {scope: ['user-read-email', 'user-read-private', 'playlist-modify-public', 'playlist-modify-private'], showDialog: true}),
   function(req, res) {
 // The request will be redirected to spotify for authentication, so this
 // function will not be called.

@@ -2,10 +2,11 @@ var React = require('react');
 
 module.exports = {
   
-  getApi: function(url, callback) {
+  getApi: function(url, headers, callback) {
     $.ajax({ 
       url: url,
       type: 'GET',
+      headers: headers,
       dataType: 'json',
       success: function(data) {        
         callback(null, data);
@@ -27,6 +28,20 @@ module.exports = {
       },
       error: function(request, status, error) {
         callback(error, null);
+      }
+    });
+      
+  },
+  deleteApi: function(url, headers, callback) {
+    $.ajax({ 
+      url: url,
+      type: 'DELETE',
+      headers: headers,
+      success: function(data) {        
+        callback(null, data);
+      },
+      error: function(request, status, error) {
+        callback(error, null);          
       }
     });
       
