@@ -73,7 +73,13 @@ if (populateSavedPlaylist) {
         // console.log(uri, playlistUris[uri]);
         console.log(uri, ' ', playlistUris[uri], ' ', uris);
 
-        //SavedPlaylist
+        new exports.SavedPlaylist({
+          playlist_name:  playlistUris[uri],
+          playlist_id: uri,
+          uri_array: JSON.stringify(uris)})
+        .save().then(function(entry) {
+          console.log('saved to database ', entry);
+        });
       }
     });    
   }
