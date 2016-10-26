@@ -1,10 +1,22 @@
 var express = require('express');
+var session = require('express-session');
 var path = require('path');
 var bodyParser = require('body-parser');
 var passport = require('passport');
 var SpotifyStrategy = require('passport-spotify').Strategy;
-var db = require('../db/dbConfig');
+var db = require('./db/dbConfig');
 var app = express();
+
+//=============================================
+//Express Session
+
+app.use(session({
+  secret: 'shhh, it\'s a secret',
+  resave: false,
+  saveUninitialized: true
+}));
+
+//=============================================
 
 //=============================================
 //Passport for spotify
@@ -13,7 +25,6 @@ var appKey = '85ae76edc4bc4a28b1338939c31bf2a4';
 var appSecret = '26e3cd2de61f4c17a2c8c07658885f40';
 
 passport.serializeUser(function(user, done) {
-  console.log('====', user);
   done(null, user);
 });
 
@@ -38,6 +49,11 @@ passport.use(new SpotifyStrategy({
     });
   }));
 
+var ensureAuthenticated = function(req, res, next) {
+  if (req.isAuthenticated()) { return next(); }
+  res.redirect('/login');
+}
+
 app.use(passport.initialize());
 app.use(passport.session());
 
@@ -52,14 +68,16 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 
 
-app.get('/', function(req, res) {
-  res.render('index');
-});
+app.get('/', 
+  ensureAuthenticated, 
+  function(req, res) {
+    res.render('index');
+  }
+);
 
 app.get('/login', function(req, res) {
   res.render('login');
 });
-
 
 
 // GET /auth/spotify
