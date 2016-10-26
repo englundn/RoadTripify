@@ -7,23 +7,21 @@ var SideMenu = require('../components/sideMenu');
 
 //Mixins
 var API = require('../mixins/APImixin');
-var map = require('../mixins/initMap');
-
 
 var App = React.createClass({
-  mixins: [API, map],
+  mixins: [API],
 
   saveTrip: function() {
     var route = window.directionsResponse.routes[0].legs[0];
     var tripname = $('#tripname').val();
 
-    var trip = {
+    var trip = JSON.stringify({
       tripname: tripname,
       start_latitude: route.start_location.lat() + '',
       start_longitude: route.start_location.lng() + '',
       end_latitude: route.end_location.lat() + '',
       end_longitude: route.end_location.lng() + ''
-    };
+    });
 
     console.log('Saving trip', trip);
     var headers = {

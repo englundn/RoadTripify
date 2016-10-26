@@ -5,6 +5,7 @@ var bodyParser = require('body-parser');
 var passport = require('passport');
 var SpotifyStrategy = require('passport-spotify').Strategy;
 var db = require('./db/dbConfig');
+var Trip = require('./db/controller/trip');
 var app = express();
 
 //=============================================
@@ -98,9 +99,21 @@ app.get('/api/user', function(req, res) {
 })
 
 app.post('/api/trip', function(req, res) {
-  console.log(req);
+  var trip = {
+    username: req.session.passport.user.username,
+    trip_name: req.body.tripname,
+    playlist_uri: 'test',
+    start_latitude: req.body.start_latitude,
+    start_longitude: req.body.start_longitude,
+    end_latitude: req.body.end_latitude,
+    end_longitude: req.body.end_longitude
+  }
+  
+  Trip.insertOne(trip, function(err, data) {
+    console.log(data);
+  })
+  res.send({result:'success'});
 })
-
 
 // GET /auth/spotify
 //   Use passport.authenticate() as route middleware to authenticate the
