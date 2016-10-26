@@ -1,8 +1,8 @@
 var SavedPlaylistModel = require('../model/savedPlaylist');
 
 //Find One Trip by condition
-function findOne(id, callback) {
-  SavedPlaylistModel.find({id: id}, callback);
+function findOne(name, callback) {
+  SavedPlaylistModel.findOne({'playlist_name': name}, callback);
 }
 
 //Find All Trip

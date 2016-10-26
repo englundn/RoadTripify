@@ -7,7 +7,7 @@ var weatherRequest = function(latitude, longitude, datetime, callback) {
     url: 'http://dataservice.accuweather.com/locations/v1/cities/geoposition/search',
     jsonp: 'callback',
     data: { apikey: apiKey, 
-      q: latitude + ',' + longitude},
+      q: '' + latitude + ',' + longitude},
     dataType: 'jsonp',
     success: function(response) {
       var locationKey = response.Key;
