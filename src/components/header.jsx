@@ -11,6 +11,7 @@ var header = React.createClass({
       	<a href="#" data-activates="nav-mobile" className="button-collapse top-nav full hide-on-large-only">
       		<i className="material-icons">menu</i>
       	</a>
+        <a className="logout-btn" href="/logout">Logout</a>
       </div>
     )
   }
