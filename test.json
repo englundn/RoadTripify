@@ -1,0 +1,4 @@
+{
+    "spotifySpec": "./test/spotifySpec.js",
+    "weatherSpec": "./test/weatherSpec.js"
+}
