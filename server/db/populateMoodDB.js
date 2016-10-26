@@ -18,7 +18,7 @@ for (var plist in playlistUris) {
     url: 'https://api.spotify.com/v1/users/spotify/playlists/' + plist + '/tracks', 
     headers: {
       /* will have to change the access token when it expires */
-      'Authorization': 'Bearer BQDH0FcanWZkVX3ucRbEv8hXbwgNsGC3HHVXirGgzUe7fUzbVDb-7BuAUf3BhPSdsfZoubltqMDNKB0G2_B83Eo5ig6T0Al8tgvN0Upv4XWhD3EWgXFAJ04jYnspVSXdHNRkVECIs75TlMyxplNUObLL9H5HHu2phfu3Y9ApcSJiV6e3WvXY0tZBsh_F6I_8GTMzchHZul52I4oR2Sl_5I0EYg2kqedM79vIrI-kw_D2wbtEQEhuG50'
+      'Authorization': 'Bearer BQBMpTxXyE2hCVI1TKcq6pUvUarqzh8bwLDXPTxLYm4WWoi7nBgZS4PU9pwqwfz9paoHqzss7rLDuxBJoGXxwDai_wATJSl__5OamnKF80fKoyEI0z6SxDxMBEnDjRph3T4iJE2j7DSEP7pnHLqwgahT-J_DniTKBYQCb5SsUwrL9nbwNE3At75x97FbfOJAJBkd3pznDfFKwkz3LmtO5y3LS1YIWFjs3tTX9lCvbe2magyDrlxgjjQ'
     }
   };
   request(options, function(error, response, body) {
@@ -30,7 +30,7 @@ for (var plist in playlistUris) {
       var uris = [];
 
       for (var i = 0; i < info.items.length; i++ ) {
-        uris.push(info.items[i].track.uri);
+        uris.push([info.items[i].track.uri, info.items[i].track.duration_ms]);
       }
       var uri = info.href.split('/')[info.href.split('/').length - 2];
       // console.log(uri, ' ', playlistUris[uri], ' ', uris);
