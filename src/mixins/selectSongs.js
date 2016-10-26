@@ -94,94 +94,99 @@ var selectSongs = function(time, weather, callback) {
 
 };
 
-var date = new Date();
-var weatherEx = {
-  "DateTime": "2016-10-26T11:00:00-07:00",
-  "EpochDateTime": 1477504800,
-  "WeatherIcon": 6,
-  "IconPhrase": "Mostly cloudy",
-  "IsDaylight": true,
-  "Temperature": {
-    "Value": 65,
-    "Unit": "F",
-    "UnitType": 18
-  },
-  "RealFeelTemperature": {
-    "Value": 66,
-    "Unit": "F",
-    "UnitType": 18
-  },
-  "WetBulbTemperature": {
-    "Value": 59,
-    "Unit": "F",
-    "UnitType": 18
-  },
-  "DewPoint": {
-    "Value": 54,
-    "Unit": "F",
-    "UnitType": 18
-  },
-  "Wind": {
-    "Speed": {
-      "Value": 6.9,
-      "Unit": "mi/h",
-      "UnitType": 9
-    },
-    "Direction": {
-      "Degrees": 137,
-      "Localized": "SE",
-      "English": "SE"
-    }
-  },
-  "WindGust": {
-    "Speed": {
-      "Value": 9.2,
-      "Unit": "mi/h",
-      "UnitType": 9
-    }
-  },
-  "RelativeHumidity": 68,
-  "Visibility": {
-    "Value": 8,
-    "Unit": "mi",
-    "UnitType": 2
-  },
-  "Ceiling": {
-    "Value": 18500,
-    "Unit": "ft",
-    "UnitType": 0
-  },
-  "UVIndex": 2,
-  "UVIndexText": "Low",
-  "PrecipitationProbability": 7,
-  "RainProbability": 7,
-  "SnowProbability": 0,
-  "IceProbability": 0,
-  "TotalLiquid": {
-    "Value": 0,
-    "Unit": "in",
-    "UnitType": 1
-  },
-  "Rain": {
-    "Value": 0,
-    "Unit": "in",
-    "UnitType": 1
-  },
-  "Snow": {
-    "Value": 0,
-    "Unit": "in",
-    "UnitType": 1
-  },
-  "Ice": {
-    "Value": 0,
-    "Unit": "in",
-    "UnitType": 1
-  },
-  "CloudCover": 81,
-  "MobileLink": "http://m.accuweather.com/en/us/south-of-market-ca/94103/hourly-weather-forecast/2628204?day=1&hbhhour=11&lang=en-us",
-  "Link": "http://www.accuweather.com/en/us/south-of-market-ca/94103/hourly-weather-forecast/2628204?day=1&hbhhour=11&lang=en-us"
+module.exports = {
+  selectSongs: selectSongs
 };
 
-selectSongs(date, weatherEx, function(songs) {
-  console.log(songs);
-});
+//testing
+// var date = new Date();
+// var weatherEx = {
+//   "DateTime": "2016-10-26T11:00:00-07:00",
+//   "EpochDateTime": 1477504800,
+//   "WeatherIcon": 6,
+//   "IconPhrase": "Mostly cloudy",
+//   "IsDaylight": true,
+//   "Temperature": {
+//     "Value": 65,
+//     "Unit": "F",
+//     "UnitType": 18
+//   },
+//   "RealFeelTemperature": {
+//     "Value": 66,
+//     "Unit": "F",
+//     "UnitType": 18
+//   },
+//   "WetBulbTemperature": {
+//     "Value": 59,
+//     "Unit": "F",
+//     "UnitType": 18
+//   },
+//   "DewPoint": {
+//     "Value": 54,
+//     "Unit": "F",
+//     "UnitType": 18
+//   },
+//   "Wind": {
+//     "Speed": {
+//       "Value": 6.9,
+//       "Unit": "mi/h",
+//       "UnitType": 9
+//     },
+//     "Direction": {
+//       "Degrees": 137,
+//       "Localized": "SE",
+//       "English": "SE"
+//     }
+//   },
+//   "WindGust": {
+//     "Speed": {
+//       "Value": 9.2,
+//       "Unit": "mi/h",
+//       "UnitType": 9
+//     }
+//   },
+//   "RelativeHumidity": 68,
+//   "Visibility": {
+//     "Value": 8,
+//     "Unit": "mi",
+//     "UnitType": 2
+//   },
+//   "Ceiling": {
+//     "Value": 18500,
+//     "Unit": "ft",
+//     "UnitType": 0
+//   },
+//   "UVIndex": 2,
+//   "UVIndexText": "Low",
+//   "PrecipitationProbability": 7,
+//   "RainProbability": 7,
+//   "SnowProbability": 0,
+//   "IceProbability": 0,
+//   "TotalLiquid": {
+//     "Value": 0,
+//     "Unit": "in",
+//     "UnitType": 1
+//   },
+//   "Rain": {
+//     "Value": 0,
+//     "Unit": "in",
+//     "UnitType": 1
+//   },
+//   "Snow": {
+//     "Value": 0,
+//     "Unit": "in",
+//     "UnitType": 1
+//   },
+//   "Ice": {
+//     "Value": 0,
+//     "Unit": "in",
+//     "UnitType": 1
+//   },
+//   "CloudCover": 81,
+//   "MobileLink": "http://m.accuweather.com/en/us/south-of-market-ca/94103/hourly-weather-forecast/2628204?day=1&hbhhour=11&lang=en-us",
+//   "Link": "http://www.accuweather.com/en/us/south-of-market-ca/94103/hourly-weather-forecast/2628204?day=1&hbhhour=11&lang=en-us"
+// };
+
+// selectSongs(date, weatherEx, function(songs) {
+//   console.log(songs);
+// });
