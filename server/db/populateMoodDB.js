@@ -18,7 +18,7 @@ for (var plist in playlistUris) {
     url: 'https://api.spotify.com/v1/users/spotify/playlists/' + plist + '/tracks', 
     headers: {
       /* will have to change the access token when it expires */
-      'Authorization': 'Bearer BQAgZOkT4r4UXEgafGLTXpnWwtbzaiuO3fNaxBGNeFoPaYWNiVX3mCYDNALjbGwnaIefBPGvVt690wdI6A5XBzj-T2vsUG2j6VxD4weS9ZmNgooL2MOB817EdrtaalCu-14u340OHwdtAlMfv1aTziPd51CxH_oCPvVqAqmWZFZAnHtABiCK_658zJ0D225t2u8JlD8z3QnaJG2rZFxWeL-y1RQ8Q2zVu7Zw3HXBRCYSwX1Lo60'
+      'Authorization': 'Bearer BQDH0FcanWZkVX3ucRbEv8hXbwgNsGC3HHVXirGgzUe7fUzbVDb-7BuAUf3BhPSdsfZoubltqMDNKB0G2_B83Eo5ig6T0Al8tgvN0Upv4XWhD3EWgXFAJ04jYnspVSXdHNRkVECIs75TlMyxplNUObLL9H5HHu2phfu3Y9ApcSJiV6e3WvXY0tZBsh_F6I_8GTMzchHZul52I4oR2Sl_5I0EYg2kqedM79vIrI-kw_D2wbtEQEhuG50'
     }
   };
   request(options, function(error, response, body) {
@@ -35,7 +35,7 @@ for (var plist in playlistUris) {
       var uri = info.href.split('/')[info.href.split('/').length - 2];
       // console.log(uri, ' ', playlistUris[uri], ' ', uris);
 
-      SavedPlaylistController({
+      SavedPlaylistController.insertOne({
         playlist_name:  playlistUris[uri],
         playlist_id: uri,
         uri_array: JSON.stringify(uris)}, function(err, entry) {
