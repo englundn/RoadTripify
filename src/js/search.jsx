@@ -46,7 +46,6 @@ var App = React.createClass({
                 </div>
               </div>
             </form>
-          
 
           </div>
 

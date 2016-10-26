@@ -79,6 +79,28 @@ app.get('/login', function(req, res) {
   res.render('login');
 });
 
+app.get('/search', 
+  ensureAuthenticated,
+  function(req, res) {
+    res.render('search');
+  }
+)
+
+app.get('/history', function(req, res) {
+
+})
+
+app.get('/api/user', function(req, res) {
+  if (req.session.passport && req.session.passport.user)
+    res.send({result:req.session.passport.user.username});
+  else
+    res.send({result:'error'});
+})
+
+app.post('/api/trip', function(req, res) {
+  console.log(req);
+})
+
 
 // GET /auth/spotify
 //   Use passport.authenticate() as route middleware to authenticate the
