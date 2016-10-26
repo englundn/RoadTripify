@@ -1,0 +1,13 @@
+.title, .login-spotify {
+  text-align: center;
+  position: relative;
+  top: 40%;
+}
+
+.login-spotify {
+	padding-top: 50px;
+}
+
+.content {
+	height:600px;
+}
