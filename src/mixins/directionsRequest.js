@@ -7,6 +7,18 @@ var googleMapsClient = require('@google/maps').createClient({
 // https://developers.google.com/maps/documentation/javascript/directions
 var getDirections = function(origin, destination, departureTime) {
   
+  //Sample input: getDirections('San Francisco, CA', 'Seattle, WA', Date.now());
+
+  // Sample output: [ { time: Wed Oct 26 2016 14:08:30 GMT-0700 (PDT),
+  //                   lat: 37.7692352,
+  //                   lng: -122.417882 },
+  //                 { time: Wed Oct 26 2016 14:35:38 GMT-0700 (PDT),
+  //                   lat: 38.033548887189546,
+  //                   lng: -122.18291239098039 },
+  //                 { time: Wed Oct 26 2016 15:05:38 GMT-0700 (PDT),
+  //                   lat: 38.403755004836604,
+  //                   lng: -121.86944486156862 }]
+  
   var request = {
     'origin': origin,
     'destination': destination,
@@ -81,6 +93,4 @@ var getDirections = function(origin, destination, departureTime) {
 
 getDirections('San Francisco, CA', 'Seattle, WA', Date.now());
 
-module.exports = {
-  getDirections: getDirections
-};
+module.exports = getDirections;
