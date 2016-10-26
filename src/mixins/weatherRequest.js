@@ -1,4 +1,4 @@
-var apiKey = 'INSERT API KEY';
+var apiKey = require('../config/apiKeys.js').accuWeatherApiKey;
 
 var weatherRequest = function(latitude, longitude, datetime, callback) {
 //send get request for location key
@@ -49,9 +49,7 @@ var weatherRequest = function(latitude, longitude, datetime, callback) {
 };
 
 //for now, comment this out for mocha tests to run in browser
-module.exports = {
-  weatherRequest: weatherRequest
-};
+module.exports = weatherRequest;
 
 // example usage
 // weatherRequest('37.7836966', '-122.4111551', new Date('10-20-2016 17:48:00'), function(obj) { console.log(obj); });

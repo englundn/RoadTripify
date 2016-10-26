@@ -1,7 +1,8 @@
+var weatherRequest = require('../src/mixins/weatherRequest.js');
 var testDate = new Date();
 
 var roundDate = new Date();
-roundDate.setHours(roundDate.getHours() + Math.round(roundDate.getMinutes()/60));
+roundDate.setHours(roundDate.getHours() + Math.round(roundDate.getMinutes() / 60));
 roundDate.setMinutes(0);
 roundDate.setSeconds(0);
 roundDate.setMilliseconds(0);
