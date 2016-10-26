@@ -35,6 +35,7 @@ function initMap() {
       if (status === 'OK') {
         console.log(response);
         directionsDisplay.setDirections(response);
+        window.directionsResponse = response;
       } else {
         window.alert('Directions request failed due to ' + status);
       }

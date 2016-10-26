@@ -9,12 +9,30 @@ var SideMenu = require('../components/sideMenu');
 var API = require('../mixins/APImixin');
 var map = require('../mixins/initMap');
 
-var saveRoute = function() {
-  console.log('save route!!!!');
-};
 
 var App = React.createClass({
   mixins: [API, map],
+
+  saveTrip: function() {
+    var route = window.directionsResponse.routes[0].legs[0];
+    var tripname = $('#tripname').val();
+
+    var trip = {
+      tripname: tripname,
+      start_latitude: route.start_location.lat() + '',
+      start_longitude: route.start_location.lng() + '',
+      end_latitude: route.end_location.lat() + '',
+      end_longitude: route.end_location.lng() + ''
+    };
+
+    console.log('Saving trip', trip);
+    var headers = {
+       'Content-Type': 'application/json'
+    };
+    API.postApi('/api/trip', headers, trip, function(err, data) {
+      console.log(data);
+    })
+  },
 
   render() {
     return (
@@ -35,15 +53,22 @@ var App = React.createClass({
                   <label>Start</label>
                 </div>
                 <div className="input-field col s5">
-                  <input id="end" type="tel" className="validate"></input>
+                  <input id="end" type="text" className="validate"></input>
                   <label>Destination</label>
                 </div>
                 <div className="input-field col s2">
-                  <input className="btn waves-effect waves-light" type="button" id="submit" value="Submit"></input>
+                  <input className="btn waves-effect waves-light" type="button" id="submit" value="Preview Trip"></input>
+                </div>
+              </div>
+              <div className="row">
+                <div className="input-field col s5">
+                  <input id="tripname" type="text" className="validate"></input>
+                  <label>Trip Name</label>
                 </div>
                 <div className="input-field col s1">
-                  <input className="btn waves-effect waves-light" type="button" onClick={saveRoute} value="Save"></input>
+                  <input className="btn waves-effect waves-light" type="button" onClick={this.saveTrip} value="Save Trip"></input>
                 </div>
+
               </div>
             </form>
 
