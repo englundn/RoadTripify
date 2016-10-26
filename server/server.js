@@ -37,7 +37,7 @@ passport.deserializeUser(function(obj, done) {
 passport.use(new SpotifyStrategy({
   clientID: appKey,
   clientSecret: appSecret,
-  callbackURL: '/callback'
+  callbackURL: 'https://roadtripify1.heroku.com/callback'
 },
   function(accessToken, refreshToken, profile, done) {
     // asynchronous verification, for effect...
