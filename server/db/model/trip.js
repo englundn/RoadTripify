@@ -3,7 +3,7 @@ var mongoose = require('mongoose');
 var Schema = mongoose.Schema;
 
 var tripSchema = new Schema({
-  username: String,
+  user_id: {type: mongoose.Schema.Types.ObjectId, ref: 'User'},
   trip_name: String,
   playlist_uri: String,
   start_latitude: String,
