@@ -1,8 +1,8 @@
 var UserModel = require('../model/user');
 
 //Find One User by condition
-function findOne(id, callback) {
-  UserModel.find({id: id}, callback);
+function findOne(parameter, callback) {
+  UserModel.findOne(parameter, callback);
 }
 
 //Find All Users

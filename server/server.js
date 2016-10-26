@@ -6,6 +6,7 @@ var passport = require('passport');
 var SpotifyStrategy = require('passport-spotify').Strategy;
 var db = require('./db/dbConfig');
 var Trip = require('./db/controller/trip');
+var User = require('./db/controller/user');
 var app = express();
 
 //=============================================
@@ -87,9 +88,12 @@ app.get('/search',
   }
 )
 
-app.get('/history', function(req, res) {
-
-})
+app.get('/history', 
+  ensureAuthenticated,
+  function(req, res) {
+    res.render('history');
+  }
+)
 
 app.get('/api/user', function(req, res) {
   if (req.session.passport && req.session.passport.user)
@@ -98,9 +102,15 @@ app.get('/api/user', function(req, res) {
     res.send({result:'error'});
 })
 
+app.get('/api/history', function(req, res) {
+  Trip.findAll(function(err, data) {
+
+  })
+})
+
 app.post('/api/trip', function(req, res) {
   var trip = {
-    username: req.session.passport.user.username,
+    user_id: req.session.passport.user_id,
     trip_name: req.body.tripname,
     playlist_uri: 'test',
     start_latitude: req.body.start_latitude,
@@ -108,7 +118,7 @@ app.post('/api/trip', function(req, res) {
     end_latitude: req.body.end_latitude,
     end_longitude: req.body.end_longitude
   }
-  
+
   Trip.insertOne(trip, function(err, data) {
     console.log(data);
   })
@@ -135,6 +145,18 @@ app.get('/auth/spotify',
 app.get('/callback',
   passport.authenticate('spotify', { failureRedirect: '/login' }),
   function(req, res) {
+    User.findOne({ username: req.session.passport.user.username }, function(err, data) {
+      if (!data) {
+        User.insertOne({ username: req.session.passport.user.username }, function(err, data2) {
+          req.session.user_id = data2._id;
+          req.session.save()
+        })
+      } else {
+        req.session.passport.user_id = data._id;
+        req.session.save()
+      }
+    })
+
     res.redirect('/');
   });
 
