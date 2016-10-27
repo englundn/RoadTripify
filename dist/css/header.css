@@ -1,0 +1,16 @@
+.header-content {
+  background-color: black;
+  height: 80px;
+}
+
+.displayInfo {
+  float: right;
+}
+
+.logout-btn, .username {
+  float: right;
+  display: inline-block;
+  color: white;
+  padding-left: 10px;
+  padding-right: 10px;
+}
