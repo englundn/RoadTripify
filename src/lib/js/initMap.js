@@ -1,4 +1,4 @@
-var initSearch = () => {
+var initMap = () => {
 
   var directionsService = new google.maps.DirectionsService();
 

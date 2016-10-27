@@ -9,8 +9,8 @@ var SideMenu = require('../components/sideMenu');
 var API = require('../mixins/APImixin');
 var directionsRequest = require('../mixins/directionsRequest');
 var weatherRequest = require('../mixins/weatherRequest');
+var selectSongs = require('../mixins/selectSongs');
 // var spotifyRequest = require('../mixins/spotifyRequest');
-// var selectSongs = require('../mixins/selectSongs');
 
 var App = React.createClass({
   mixins: [API],
@@ -39,14 +39,18 @@ var App = React.createClass({
   generateNewPlaylist: () => {
     console.log('before function');
     var interval = setInterval(function() {
-      console.log(window.directionsResponse);
+      // console.log(window.directionsResponse);
       if (window.directionsResponse) {
         directionsRequest(window.directionsResponse, Date.now(), (placeArray) => {
-          console.log(placeArray);
+          // console.log(placeArray);
           placeArray.map(place => {
             return weatherRequest(place.lat, place.lng, place.time, (placeWeather) => {
-              console.log(placeWeather);
-              return placeWeather;
+              // console.log(placeWeather);
+              selectSongs(placeWeather.time, placeWeather.weather, songArray => {
+                console.log(songArray);
+                return songArray;
+              });
+              // return placeWeather;
             });
           });
           clearInterval(interval);
