@@ -74,5 +74,6 @@ function initMap() {
     calculateAndDisplayRoute(directionsService, directionsDisplay);
   };
   
-  document.getElementById('submit').addEventListener('click', onChangeHandler);
+  //document.getElementById('submit').addEventListener('click', onChangeHandler);
+  $('#App').on('click', '.save-trip-btn', onChangeHandler);
 }
