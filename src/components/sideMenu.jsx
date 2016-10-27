@@ -7,9 +7,7 @@ var header = React.createClass({
       <div id="nav-mobile" className="side-nav fixed">
       	<ul>
           <li><a className="nav-items" href="/search.html">Search</a></li>
-          <li><a className="nav-items" href="/">History</a></li>
-      		<li><a className="nav-items" href="/">Navigate</a></li>
-      		<li><a className="nav-items settings" href="/">Settings</a></li>
+          <li><a className="nav-items" href="/history.html">History</a></li>
       	</ul>
       </div>
     )
