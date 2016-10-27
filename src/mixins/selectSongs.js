@@ -1,5 +1,6 @@
-var db = require('../../server/db/dbConfig');
-var playListController = require('../../server/db/controller/savedPlaylist');
+//var db = require('../../server/db/dbConfig');
+//var playListController = require('../../server/db/controller/savedPlaylist');
+var APIMixin = require('./APImixin');
 // Soak Up The Sun', /* beachy vibes */
 // 'Autumn Leaves', /* rainy day fall vibes */
 // 'Life Sucks',  bad day vibes 
@@ -73,11 +74,17 @@ var selectSongs = function(time, weather, callback) {
   var remainingTime = 60000 * 30;
   console.log(playlist);
 
-  playListController.findOne(playlist, function(err, data) {
+  var headers = {
+     'Content-Type': 'application/json'
+  };
+
+  APIMixin.postApi('/api/savedplaylists', headers, JSON.stringify({name: playlist}), function(err, data) {
     if (err) {
       console.log(err);
     }
-    var songChoices = JSON.parse(data.uri_array);
+    console.log('raw data', data);
+    var songChoices = JSON.parse(data);
+    console.log(songChoices);
     var song_uris = [];
     var randIndex = 0;
 

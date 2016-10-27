@@ -7,6 +7,7 @@ var SpotifyStrategy = require('passport-spotify').Strategy;
 var db = require('./db/dbConfig');
 var Trip = require('./db/controller/trip');
 var User = require('./db/controller/user');
+var SavedPlaylist = require('./db/controller/savedPlaylist');
 var app = express();
 
 //=============================================
@@ -124,6 +125,17 @@ app.post('/api/trip', function(req, res) {
   })
   res.send({result:'success'});
 })
+
+app.post('/api/savedplaylists', function(req, res) {
+  console.log(req.body);
+  SavedPlaylist.findOne(req.body.name, function(err, data) {
+    if (err) {
+      console.log(err);
+    }
+    //console.log(JSON.stringify(JSON.parse(data.uri_array)));
+    res.send(JSON.stringify(JSON.parse(data.uri_array)));
+  });
+});
 
 // GET /auth/spotify
 //   Use passport.authenticate() as route middleware to authenticate the
