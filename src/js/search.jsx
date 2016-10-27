@@ -10,7 +10,7 @@ var API = require('../mixins/APImixin');
 var directionsRequest = require('../mixins/directionsRequest');
 var weatherRequest = require('../mixins/weatherRequest');
 var selectSongs = require('../mixins/selectSongs');
-// var spotifyRequest = require('../mixins/spotifyRequest');
+var spotifyRequest = require('../mixins/spotifyRequest');
 
 var App = React.createClass({
   mixins: [API],
@@ -38,22 +38,30 @@ var App = React.createClass({
 
   generateNewPlaylist: () => {
     console.log('before function');
-    var interval = setInterval(function() {
-      // console.log(window.directionsResponse);
+    var waitingForMapData = setInterval(function() {
       if (window.directionsResponse) {
         directionsRequest(window.directionsResponse, Date.now(), (placeArray) => {
-          // console.log(placeArray);
-          placeArray.map(place => {
+          var counter = 0;
+          var arrayofSongArrays = new Array(placeArray.length);
+          placeArray.map((place, index) => {
             return weatherRequest(place.lat, place.lng, place.time, (placeWeather) => {
-              // console.log(placeWeather);
-              selectSongs(placeWeather.time, placeWeather.weather, songArray => {
-                console.log(songArray);
+              return selectSongs(placeWeather.time, placeWeather.weather, songArray => {
+                arrayofSongArrays[index] = songArray;
+                counter++;
                 return songArray;
               });
-              // return placeWeather;
             });
           });
-          clearInterval(interval);
+          var waitingForSongData = setInterval(function() {
+            if (counter === placeArray.length) {
+              var mergedArray = [].concat.apply([], arrayofSongArrays);
+              console.log('mergedArray: ', mergedArray);
+              clearInterval(waitingForSongData);
+              return mergedArray;
+            }
+          }, 1000);
+
+          clearInterval(waitingForMapData);
         });
       }
     }, 1000); 
