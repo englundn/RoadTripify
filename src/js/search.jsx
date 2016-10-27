@@ -25,30 +25,30 @@ var App = React.createClass({
 
     console.log('Saving trip', trip);
     var headers = {
-       'Content-Type': 'application/json'
+      'Content-Type': 'application/json'
     };
     API.postApi('/api/trip', headers, trip, function(err, data) {
       console.log(data);
-    })
+    });
   },
 
   render() {
     return (
       <div>
       <header>
-      	<Header />
+        <Header />
       </header>
       <SideMenu />
       <main>
-      	<div className="row">
+        <div className="row">
 					<div className="col s12 m9 l10">
 
             
             <form className="col s6">
               <div className="row">
                 <div className="input-field col s5">
-                  <input id="start" type="text" className="validate"></input>
-                  <label>Start</label>
+                  <input id="start" type="text" className="validate autocomplete"></input>
+                  <label>Start or 'Use My Location'</label>
                 </div>
                 <div className="input-field col s5">
                   <input id="end" type="text" className="validate"></input>
