@@ -14,12 +14,13 @@
 
 @media screen and (max-width: 992px) {
   .title {
-  	font-size: 100px !important;
+  	font-size: 200px !important;
   }
 
   .login-spotify-btn {
-    height: 80px !important;
-    width: 300px;
-    padding-top: 20px !important;
+    height: 134px !important;
+    width: 400px;
+    padding-top: 33px !important;
+    font-size: 42px;
   }
 }
