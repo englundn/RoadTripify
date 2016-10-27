@@ -16,7 +16,7 @@ var App = React.createClass({
       <Header />
       <div className="content">
         <h2 className="title">Login</h2>
-        <div className="login-spotify"><a className="waves-effect waves-light btn" href="/auth/spotify">Login with Spotify</a></div>
+        <div className="login-spotify"><a className="login-spotify-btn waves-effect waves-light btn" href="/auth/spotify">Login with Spotify</a></div>
       </div>
       </div>
     );
