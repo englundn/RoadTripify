@@ -20,9 +20,11 @@ function initMap() {
   // map.controls[google.maps.ControlPosition.TOP_CENTER].push(control);
 
   var onChangeHandler = function() {
+    console.log("test");
     calculateAndDisplayRoute(directionsService, directionsDisplay);
   };
-  document.getElementById('submit').addEventListener('click', onChangeHandler);
+  //document.getElementById('submit').addEventListener('click', onChangeHandler);
+  $('#App').on('click', '.save-trip-btn', onChangeHandler);
 
   function calculateAndDisplayRoute(directionsService, directionsDisplay) {
     var start = document.getElementById('start').value;
