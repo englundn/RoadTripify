@@ -7,6 +7,10 @@ var SideMenu = require('../components/sideMenu');
 
 //Mixins
 var API = require('../mixins/APImixin');
+var directionsRequest = require('../mixins/directionsRequest');
+// var spotifyRequest = require('../mixins/spotifyRequest');
+// var weatherRequest = require('../mixins/weatherRequest');
+// var selectSongs = require('../mixins/selectSongs');
 
 var App = React.createClass({
   mixins: [API],
@@ -25,12 +29,27 @@ var App = React.createClass({
 
     console.log('Saving trip', trip);
     var headers = {
-       'Content-Type': 'application/json'
+      'Content-Type': 'application/json'
     };
     API.postApi('/api/trip', headers, trip, function(err, data) {
       console.log(data);
-    })
+    });
   },
+
+  generateNewPlaylist: () => {
+    console.log('before function');
+    var interval = setInterval(function() {
+      console.log(window.directionsResponse);
+      if (window.directionsResponse) {
+        directionsRequest(window.directionsResponse, Date.now(), (placeArray) => {
+          console.log(placeArray);
+          clearInterval(interval);
+        });
+      }
+    }, 1000); 
+  },
+
+
 
   render() {
     return (
@@ -55,7 +74,7 @@ var App = React.createClass({
                   <label>Destination</label>
                 </div>
                 <div className="input-field col s2">
-                  <input className="btn waves-effect waves-light" type="button" id="submit" value="Preview Trip"></input>
+                  <input className="btn waves-effect waves-light" type="button" id="submit" onClick={this.generateNewPlaylist} value="Preview Trip"></input>
                 </div>
               </div>
               <div className="row">

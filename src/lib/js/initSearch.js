@@ -1,4 +1,4 @@
-function initMap() {
+var initSearch = () => {
 
   var directionsService = new google.maps.DirectionsService();
 
@@ -19,12 +19,7 @@ function initMap() {
   // control.style.display = 'block';
   // map.controls[google.maps.ControlPosition.TOP_CENTER].push(control);
 
-  var onChangeHandler = function() {
-    calculateAndDisplayRoute(directionsService, directionsDisplay);
-  };
-  document.getElementById('submit').addEventListener('click', onChangeHandler);
-
-  function calculateAndDisplayRoute(directionsService, directionsDisplay) {
+  var calculateAndDisplayRoute = (directionsService, directionsDisplay) => {
     var start = document.getElementById('start').value;
     var end = document.getElementById('end').value;
     directionsService.route({
@@ -40,6 +35,12 @@ function initMap() {
         window.alert('Directions request failed due to ' + status);
       }
     });
-  }
+  };
 
-}
+
+  var onChangeHandler = () => {
+    calculateAndDisplayRoute(directionsService, directionsDisplay);
+  };
+  document.getElementById('submit').addEventListener('click', onChangeHandler);
+
+};

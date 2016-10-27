@@ -101,9 +101,7 @@ var selectSongs = function(time, weather, callback) {
 
 };
 
-module.exports = {
-  selectSongs: selectSongs
-};
+module.exports = selectSongs;
 
 //testing
 // var date = new Date();
