@@ -5,9 +5,21 @@
 }
 
 .login-spotify {
-	padding-top: 50px;
+  padding-top: 50px;
 }
 
 .content {
-	height:600px;
+  height:600px;
+}
+
+@media screen and (max-width: 992px) {
+  .title {
+  	font-size: 100px !important;
+  }
+
+  .login-spotify-btn {
+    height: 80px !important;
+    width: 300px;
+    padding-top: 20px !important;
+  }
 }

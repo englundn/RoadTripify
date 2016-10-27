@@ -10,6 +10,11 @@ var API = require('../mixins/APImixin');
 
 var App = React.createClass({
   mixins: [API],
+  componentDidMount() {
+    $('.collapsible').collapsible({
+      accordion : false // A setting that changes the collapsible behavior to expandable instead of the default accordion style
+    });  
+  },
 
   render() {
     return (
@@ -21,7 +26,20 @@ var App = React.createClass({
       <main>
       	<div className="row">
 					<div className="col s12 m9 l10">Index page</div>
-          <iframe src="https://embed.spotify.com/?uri=spotify:user:spotify:playlist:3rgsDhGHZxZ9sB9DQWQfuf" width="300" height="380" frameBorder="0" allowTransparency="true"></iframe>
+            <ul className="collapsible" data-collapsible="accordion">
+              <li>
+                <div className="collapsible-header"><i className="material-icons">filter_drama</i>First</div>
+                <div className="collapsible-body"><p>Lorem ipsum dolor sit amet.</p></div>
+              </li>
+              <li>
+                <div className="collapsible-header"><i className="material-icons">place</i>Second</div>
+                <div className="collapsible-body"><p>Lorem ipsum dolor sit amet.</p></div>
+              </li>
+              <li>
+                <div className="collapsible-header"><i className="material-icons">whatshot</i>Third</div>
+                <div className="collapsible-body"><p>Lorem ipsum dolor sit amet.</p></div>
+              </li>
+          </ul>
 				</div>
       </main>
       </div>

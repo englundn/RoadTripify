@@ -21,7 +21,7 @@ var App = React.createClass({
       <main>
       	<div className="row">
 					<div className="col s12 m9 l10">Index page</div>
-          <iframe src="https://embed.spotify.com/?uri=spotify:user:spotify:playlist:3rgsDhGHZxZ9sB9DQWQfuf" width="300" height="380" frameBorder="0" allowTransparency="true"></iframe>
+          <iframe src="https://embed.spotify.com/?uri=spotify:user:larkhat:playlist:4fHjhYL3h3xV333Rq9ctHD" width="300" height="380" frameBorder="0" allowTransparency="true"></iframe>
 				</div>
       </main>
       </div>
