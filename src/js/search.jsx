@@ -8,8 +8,8 @@ var SideMenu = require('../components/sideMenu');
 //Mixins
 var API = require('../mixins/APImixin');
 var directionsRequest = require('../mixins/directionsRequest');
+var weatherRequest = require('../mixins/weatherRequest');
 // var spotifyRequest = require('../mixins/spotifyRequest');
-// var weatherRequest = require('../mixins/weatherRequest');
 // var selectSongs = require('../mixins/selectSongs');
 
 var App = React.createClass({
@@ -43,6 +43,12 @@ var App = React.createClass({
       if (window.directionsResponse) {
         directionsRequest(window.directionsResponse, Date.now(), (placeArray) => {
           console.log(placeArray);
+          placeArray.map(place => {
+            return weatherRequest(place.lat, place.lng, place.time, (placeWeather) => {
+              console.log(placeWeather);
+              return placeWeather;
+            });
+          });
           clearInterval(interval);
         });
       }
