@@ -43,7 +43,7 @@ var initMap = () => {
 
   directionsDisplay.setPanel(document.getElementById('right-panel'));
 
-  function calculateAndDisplayRoute(directionsService, directionsDisplay) {
+  var calculateAndDisplayRoute = (directionsService, directionsDisplay) => {
     if (document.getElementById('start').value === 'Use My Location') {
       var start = window.userLocation;
     } else {
@@ -78,4 +78,4 @@ var initMap = () => {
   
   //document.getElementById('submit').addEventListener('click', onChangeHandler);
   $('#App').on('click', '.save-trip-btn', onChangeHandler);
-}
+};
