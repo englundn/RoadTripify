@@ -15,11 +15,11 @@ var App = React.createClass({
     return (
       <div>
       <header>
-      	<Header />
+        <Header />
       </header>
       <SideMenu />
       <main>
-      	<div className="row">
+        <div className="row">
 					<div className="col s12 m9 l10">Index page</div>
           <iframe src="https://embed.spotify.com/?uri=spotify:user:larkhat:playlist:4fHjhYL3h3xV333Rq9ctHD" width="300" height="380" frameBorder="0" allowTransparency="true"></iframe>
 				</div>
