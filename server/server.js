@@ -122,7 +122,7 @@ app.post('/api/trip', function(req, res) {
   var trip = {
     user_id: req.session.passport.user_id,
     trip_name: req.body.tripname,
-    playlist_uri: 'test',
+    playlist_uri: req.body.playlist_uri,
     start_latitude: req.body.start_latitude,
     start_longitude: req.body.start_longitude,
     start_addresss: req.body.start_addresss,
