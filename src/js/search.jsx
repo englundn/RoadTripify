@@ -16,6 +16,12 @@ var spotifyRequest = require('../mixins/spotifyRequest');
 var finalPlaylistID = '';
 
 var App = React.createClass({
+  getInitialState: function() {
+    return {
+      playlistUri: ""
+    };
+  },
+
   mixins: [API],
 
   saveTrip: function() {
@@ -66,7 +72,8 @@ var App = React.createClass({
     });
   },
 
-  generateNewPlaylist: () => {
+  generateNewPlaylist: function() {
+    var context = this;
     var waitingForMapData = setInterval(function() {
       if (window.directionsResponse) {
         directionsRequest(window.directionsResponse, Date.now(), (placeArray) => {
@@ -107,6 +114,9 @@ var App = React.createClass({
                           console.error('could not add songs to playlist');
                         } else {
                           finalPlaylistID = playlistId;
+                          context.setState({
+                            playlistUri: "https://embed.spotify.com/?uri=spotify:user:"+userId+":playlist:"+playlistId
+                          });
                         }
                       });
                     }
@@ -157,6 +167,9 @@ var App = React.createClass({
                 </div>
               </div>
             </form>
+            <div className="playlist">
+              <iframe src={this.state.playlistUri} width="400" height="380" frameBorder="0" allowTransparency="true"></iframe>
+            </div>
           </div>
         </div>
       </main>

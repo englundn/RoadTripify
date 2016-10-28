@@ -43,3 +43,7 @@ html, body {
     width: auto;
   }
 }
+
+.playlist {
+  float: right;
+}
