@@ -54,10 +54,35 @@ var App = React.createClass({
           });
           var waitingForSongData = setInterval(function() {
             if (counter === placeArray.length) {
-              var mergedArray = [].concat.apply([], arrayofSongArrays);
-              console.log('mergedArray: ', mergedArray);
+              var songUriArray = [].concat.apply([], arrayofSongArrays);
+              console.log('songUriArray: ', songUriArray);
               clearInterval(waitingForSongData);
-              return mergedArray;
+              var headers = {
+                'Content-Type': 'application/json',
+              };
+              API.getApi('/api/user', headers, function(err, data) {
+                if (data.result !== 'error') {
+                  console.log(data.result);
+                  var userId = data.result.username;
+                  var accessToken = data.result.accessToken;
+                  var playlistName = '' + new Date();
+                  var isPlaylistPublic = false;
+                  spotifyRequest.makeNewPlaylist(userId, accessToken, playlistName, isPlaylistPublic, function(error, results) {
+                    if (error) {
+                      console.error('could not make playlist');
+                    } else {
+                      var playlistId = results.id;
+                      console.log(playlistId);
+                      spotifyRequest.addSongsToPlaylist(userId, accessToken, playlistId, songUriArray, function(error, results) {
+                        console.log('addign songs to playlist', error);
+                      });
+                    }
+                  });
+                }
+              });
+
+
+              return songUriArray;
             }
           }, 1000);
 
@@ -73,14 +98,12 @@ var App = React.createClass({
     return (
       <div>
       <header>
-      	<Header />
+        <Header />
       </header>
       <SideMenu />
       <main>
-      	<div className="row">
+        <div className="row">
 					<div className="col s12 m9 l10">
-
-            
             <form className="col s6">
               <div className="row">
                 <div className="input-field col s5">
@@ -103,12 +126,9 @@ var App = React.createClass({
                 <div className="input-field col s1">
                   <input className="btn waves-effect waves-light" type="button" onClick={this.saveTrip} value="Save Trip"></input>
                 </div>
-
               </div>
             </form>
-
           </div>
-
 				</div>
       </main>
       </div>

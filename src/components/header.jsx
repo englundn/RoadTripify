@@ -15,7 +15,7 @@ var header = React.createClass({
       if (data.result !== 'error') {
         //username
         $('.displayInfo').html('<a class="logout-btn" href="/logout">Logout</a>' +
-                               '<div class="username">' + data.result + '</div>');
+                               '<div class="username">' + data.result.username + '</div>');
 
       } else {
         $('.menu-btn').hide();
