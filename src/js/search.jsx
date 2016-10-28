@@ -73,8 +73,8 @@ var App = React.createClass({
             <form className="col s6">
               <div className="row">
                 <div className="input-field col s5">
-                  <input id="start" type="text" className="validate"></input>
-                  <label>Start</label>
+                  <input id="start" type="text" className="validate autocomplete"></input>
+                  <label>Start or 'Use My Location'</label>
                 </div>
                 <div className="input-field col s5">
                   <input id="end" type="text" className="validate"></input>
