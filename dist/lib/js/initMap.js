@@ -1,4 +1,4 @@
-var initMap = () => {
+function initMap() {
 
   var directionsService = new google.maps.DirectionsService();
 
@@ -68,14 +68,11 @@ var initMap = () => {
         window.alert('Directions request failed due to ' + status);
       }
     });
-  };
-
-
+  }
 
   var onChangeHandler = function() {
     calculateAndDisplayRoute(directionsService, directionsDisplay);
   };
   
-  //document.getElementById('submit').addEventListener('click', onChangeHandler);
-  $('#App').on('click', '.save-trip-btn', onChangeHandler);
+  document.getElementById('submit').addEventListener('click', onChangeHandler);
 }
