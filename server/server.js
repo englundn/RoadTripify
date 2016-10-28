@@ -122,8 +122,10 @@ app.post('/api/trip', function(req, res) {
     playlist_uri: 'test',
     start_latitude: req.body.start_latitude,
     start_longitude: req.body.start_longitude,
+    start_addresss: req.body.start_addresss,
     end_latitude: req.body.end_latitude,
-    end_longitude: req.body.end_longitude
+    end_longitude: req.body.end_longitude,
+    end_address: req.body.end_address
   };
 
   Trip.insertOne(trip, function(err, data) {
@@ -166,7 +168,7 @@ app.get('/callback',
     User.findOne({ username: req.session.passport.user.username }, function(err, data) {
       if (!data) {
         User.insertOne({ username: req.session.passport.user.username }, function(err, data2) {
-          req.session.user_id = data2._id;
+          req.session.progress.user_id = data2._id;
           req.session.save();
         });
       } else {
