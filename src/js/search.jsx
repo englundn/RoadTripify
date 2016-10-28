@@ -18,7 +18,7 @@ var finalPlaylistID = '';
 var App = React.createClass({
   getInitialState: function() {
     return {
-      playlistUri: ""
+      playlistUri: ''
     };
   },
 
@@ -26,21 +26,21 @@ var App = React.createClass({
 
   saveTrip: function() {
     var route = window.directionsResponse.routes[0].legs[0];
-    var tripname = $('#tripname').val();
+    var tripname = $('#tripname').val() || $('#start').val() + ' to ' + $('#end').val();
 
     var context = this;
 
     context.geocodeLatLng(route.start_location.lng(), route.start_location.lat(), function(startAddress) {
       context.geocodeLatLng(route.end_location.lng(), route.end_location.lat(), function(endAddress) {
         var trip = JSON.stringify({
-          tripname: tripname,
-          playlist_uri: finalPlaylistID,
-          start_latitude: route.start_location.lat() + '',
-          start_longitude: route.start_location.lng() + '',
-          end_latitude: route.end_location.lat() + '',
-          end_longitude: route.end_location.lng() + '',
-          start_address: startAddress,
-          end_address: endAddress
+          'tripname': tripname,
+          'playlist_uri': finalPlaylistID,
+          'start_latitude': route.start_location.lat() + '',
+          'start_longitude': route.start_location.lng() + '',
+          'end_latitude': route.end_location.lat() + '',
+          'end_longitude': route.end_location.lng() + '',
+          'start_address': startAddress,
+          'end_address': endAddress
         });
 
         console.log('Saving trip', trip);
@@ -109,13 +109,20 @@ var App = React.createClass({
                     } else {
                       var playlistId = results.id;
                       console.log(playlistId);
-                      spotifyRequest.addSongsToPlaylist(userId, accessToken, playlistId, songUriArray, function(error, results) {
+                      spotifyRequest.addSongsToPlaylist(userId, accessToken, playlistId, songUriArray.slice(0, 100), function(error, results) {
                         if (error) {
                           console.error('could not add songs to playlist');
                         } else {
+                          if (songUriArray.length > 100) {
+                            spotifyRequest.addSongsToPlaylist(userId, accessToken, playlistId, songUriArray.slice(100, 200), function(error, results) {
+                              if (error) {
+                                console.error('could not add songs to playlist');
+                              }
+                            });
+                          }
                           finalPlaylistID = playlistId;
                           context.setState({
-                            playlistUri: "https://embed.spotify.com/?uri=spotify:user:"+userId+":playlist:"+playlistId
+                            playlistUri: 'https://embed.spotify.com/?uri=spotify:user:' + userId + ':playlist:' + playlistId
                           });
                         }
                       });
