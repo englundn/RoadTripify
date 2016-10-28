@@ -1,4 +1,4 @@
-function initMap() {
+var initMap = () => {
 
   var directionsService = new google.maps.DirectionsService();
 
@@ -68,7 +68,9 @@ function initMap() {
         window.alert('Directions request failed due to ' + status);
       }
     });
-  }
+  };
+
+
 
   var onChangeHandler = function() {
     calculateAndDisplayRoute(directionsService, directionsDisplay);

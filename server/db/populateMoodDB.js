@@ -1,6 +1,7 @@
 var mongoose = require('mongoose');
 var request = require('request');
 var db = require('./dbConfig');
+var accessToken = require('../../src/config/apiKeys').spotifyAccessToken;
 var SavedPlaylistController = require('./controller/savedPlaylist');
 
 var playlistUris = {
@@ -18,7 +19,7 @@ for (var plist in playlistUris) {
     url: 'https://api.spotify.com/v1/users/spotify/playlists/' + plist + '/tracks', 
     headers: {
       /* will have to change the access token when it expires */
-      'Authorization': 'Bearer BQBMpTxXyE2hCVI1TKcq6pUvUarqzh8bwLDXPTxLYm4WWoi7nBgZS4PU9pwqwfz9paoHqzss7rLDuxBJoGXxwDai_wATJSl__5OamnKF80fKoyEI0z6SxDxMBEnDjRph3T4iJE2j7DSEP7pnHLqwgahT-J_DniTKBYQCb5SsUwrL9nbwNE3At75x97FbfOJAJBkd3pznDfFKwkz3LmtO5y3LS1YIWFjs3tTX9lCvbe2magyDrlxgjjQ'
+      'Authorization': 'Bearer ' + accessToken,
     }
   };
   request(options, function(error, response, body) {

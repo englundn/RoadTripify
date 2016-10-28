@@ -7,6 +7,10 @@ var SideMenu = require('../components/sideMenu');
 
 //Mixins
 var API = require('../mixins/APImixin');
+var directionsRequest = require('../mixins/directionsRequest');
+var weatherRequest = require('../mixins/weatherRequest');
+var selectSongs = require('../mixins/selectSongs');
+var spotifyRequest = require('../mixins/spotifyRequest');
 
 var App = React.createClass({
   mixins: [API],
@@ -108,24 +112,25 @@ var App = React.createClass({
             }
           }, 1000);
 
+
           clearInterval(waitingForMapData);
         });
       }
     }, 1000); 
   },
 
+
+
   render() {
     return (
       <div>
       <header>
-      	<Header />
+        <Header />
       </header>
       <SideMenu />
       <main>
-      	<div className="row">
+        <div className="row">
 					<div className="col s12 m9 l10">
-
-            
             <form className="col s6">
               <div className="row">
                 <div className="input-field col s5">
@@ -148,12 +153,9 @@ var App = React.createClass({
                 <div className="input-field col s1">
                   <input className="btn waves-effect waves-light" type="button" onClick={this.saveTrip} value="Save Trip"></input>
                 </div>
-
               </div>
             </form>
-
           </div>
-
 				</div>
       </main>
       </div>

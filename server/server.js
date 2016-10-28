@@ -26,6 +26,7 @@ app.use(session({
 
 var appKey = '85ae76edc4bc4a28b1338939c31bf2a4';
 var appSecret = '26e3cd2de61f4c17a2c8c07658885f40';
+var spotifyAccessToken = '';
 
 passport.serializeUser(function(user, done) {
   done(null, user);
@@ -48,6 +49,7 @@ passport.use(new SpotifyStrategy({
       // to associate the spotify account with a user record in your database,
       // and return that user instead.
       console.log(accessToken);
+      spotifyAccessToken = accessToken;
       return done(null, profile);
     });
   }));
@@ -55,7 +57,7 @@ passport.use(new SpotifyStrategy({
 var ensureAuthenticated = function(req, res, next) {
   if (req.isAuthenticated()) { return next(); }
   res.redirect('/login');
-}
+};
 
 app.use(passport.initialize());
 app.use(passport.session());
@@ -87,27 +89,31 @@ app.get('/search',
   function(req, res) {
     res.render('search');
   }
-)
+);
 
 app.get('/history', 
   ensureAuthenticated,
   function(req, res) {
     res.render('history');
   }
-)
+);
 
 app.get('/api/user', function(req, res) {
-  if (req.session.passport && req.session.passport.user)
-    res.send({result:req.session.passport.user.username});
-  else
-    res.send({result:'error'});
-})
+  if (req.session.passport && req.session.passport.user) {
+    res.send({result: {
+      username: req.session.passport.user.username,
+      accessToken: spotifyAccessToken
+    }});
+  } else {
+    res.send({result: 'error'});
+  }
+});
 
 app.get('/api/history', function(req, res) {
   Trip.findAll(function(err, data) {
 
-  })
-})
+  });
+});
 
 app.post('/api/trip', function(req, res) {
   var trip = {
@@ -118,13 +124,13 @@ app.post('/api/trip', function(req, res) {
     start_longitude: req.body.start_longitude,
     end_latitude: req.body.end_latitude,
     end_longitude: req.body.end_longitude
-  }
+  };
 
   Trip.insertOne(trip, function(err, data) {
     console.log(data);
-  })
-  res.send({result:'success'});
-})
+  });
+  res.send({result: 'success'});
+});
 
 app.post('/api/savedplaylists', function(req, res) {
   console.log(req.body);
@@ -161,13 +167,13 @@ app.get('/callback',
       if (!data) {
         User.insertOne({ username: req.session.passport.user.username }, function(err, data2) {
           req.session.user_id = data2._id;
-          req.session.save()
-        })
+          req.session.save();
+        });
       } else {
         req.session.passport.user_id = data._id;
-        req.session.save()
+        req.session.save();
       }
-    })
+    });
 
     res.redirect('/');
   });
