@@ -1,3 +1,4 @@
+//This file configures webpack to run on the test files
 var path = require('path');
 var webpack = require('webpack');
 var test = require('./test.json');

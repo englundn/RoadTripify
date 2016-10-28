@@ -12,17 +12,17 @@ roundDate.setMilliseconds(0);
 
 console.log(testDate, roundDate);
 
-describe('Weather Request', function() {
-  it('Should generate the forecast for the closest time', function(done) {
-    weatherRequest('37.7836966', '-122.4111551', testDate, function(results) { 
+describe('Weather Request', () => {
+  it('Should generate the forecast for the closest time', (done) => {
+    weatherRequest('37.7836966', '-122.4111551', testDate, (results) => { 
       console.log('results date', new Date(results.weather.DateTime), 'rounddate', roundDate);
       expect(new Date(results.weather.DateTime)).to.eql(roundDate);
       done();
     });
   });
 
-  it('Should not modify the coordinate inputs', function(done) {
-    weatherRequest('37.7836966', '-122.4111551', testDate, function(results) { 
+  it('Should not modify the coordinate inputs', (done) => {
+    weatherRequest('37.7836966', '-122.4111551', testDate, (results) => { 
       expect(results.latitude).to.equal('37.7836966');
       expect(results.longitude).to.equal('-122.4111551');
       expect(results.time).to.eql(testDate);
@@ -30,8 +30,8 @@ describe('Weather Request', function() {
     });
   });
 
-  it('Should return a weather forecast', function(done) {
-    weatherRequest('37.7836966', '-122.4111551', testDate, function(results) { 
+  it('Should return a weather forecast', (done) => {
+    weatherRequest('37.7836966', '-122.4111551', testDate, (results) => { 
       expect(results.weather.Temperature).to.exist;
       done();
     });

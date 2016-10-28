@@ -5,13 +5,13 @@ var header = React.createClass({
   render() {
     return (
       <div id="nav-mobile" className="side-nav fixed">
-      	<ul>
+        <ul>
           <li><a className="nav-items" href="/search">Search</a></li>
           <li><a className="nav-items" href="/history">History</a></li>
-      	</ul>
+        </ul>
       </div>
-    )
+    );
   }
-})
+});
 
 module.exports = header;

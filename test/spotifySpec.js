@@ -8,9 +8,9 @@ var playlistId;
 var songUriArray = ['spotify:track:4iV5W9uYEdYUVa79Axb7Rh', 'spotify:track:1301WleyT98MSxVHPZCA6M'];
 
 
-describe('Spotify Request', function() {
-  it('Should create a new playlist', function(done) {
-    spotifyRequest.makeNewPlaylist(userId, accessToken, playlistName, isPlaylistPublic, function(error, results) { 
+describe('Spotify Request', () => {
+  it('Should create a new playlist', (done) => {
+    spotifyRequest.makeNewPlaylist(userId, accessToken, playlistName, isPlaylistPublic, (error, results) => { 
       expect(error).to.eql(null);
       expect(results.type).to.eql('playlist');
       playlistId = results.id;
@@ -18,16 +18,16 @@ describe('Spotify Request', function() {
     });
   });
 
-  it('Should add songs to a playlist', function(done) {
-    spotifyRequest.addSongsToPlaylist(userId, accessToken, playlistId, songUriArray, function(error, results) { 
+  it('Should add songs to a playlist', (done) => {
+    spotifyRequest.addSongsToPlaylist(userId, accessToken, playlistId, songUriArray, (error, results) => { 
       expect(error).to.eql(null);
       expect(results.snapshot_id).to.exist;
       done();
     });
   });
 
-  it('Should return the songs inside a playlist', function(done) {
-    spotifyRequest.getSongsFromPlaylist(userId, accessToken, playlistId, function(error, results) { 
+  it('Should return the songs inside a playlist', (done) => {
+    spotifyRequest.getSongsFromPlaylist(userId, accessToken, playlistId, (error, results) => { 
       expect(error).to.eql(null);
       expect(results.total).to.eql(2);
       expect(results.items[0].track.name).to.eql('Prelude for Piano No. 11 in F-Sharp Minor');
@@ -36,8 +36,8 @@ describe('Spotify Request', function() {
     });
   });
 
-  it('Should delete a playlist', function(done) {
-    spotifyRequest.deletePlaylist(userId, accessToken, playlistId, function(error, results) { 
+  it('Should delete a playlist', (done) => {
+    spotifyRequest.deletePlaylist(userId, accessToken, playlistId, (error, results) => { 
       expect(error).to.eql(null);
       done();
     });

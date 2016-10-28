@@ -11,7 +11,7 @@ var initMap = () => {
 
   // Try HTML5 geolocation.
   if (navigator.geolocation) {
-    navigator.geolocation.getCurrentPosition(function(position) {
+    navigator.geolocation.getCurrentPosition((position) => {
       var pos = {
         lat: position.coords.latitude,
         lng: position.coords.longitude
@@ -59,7 +59,7 @@ var initMap = () => {
       origin: start,
       destination: end,
       travelMode: 'DRIVING'
-    }, function(response, status) {
+    }, (response, status) => {
       if (status === 'OK') {
         console.log(response);
         directionsDisplay.setDirections(response);
@@ -72,7 +72,7 @@ var initMap = () => {
 
 
 
-  var onChangeHandler = function() {
+  var onChangeHandler = () => {
     calculateAndDisplayRoute(directionsService, directionsDisplay);
   };
   

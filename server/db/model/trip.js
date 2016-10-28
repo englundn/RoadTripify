@@ -12,7 +12,7 @@ var tripSchema = new Schema({
   end_latitude: String,
   end_longitude: String,
   end_address: String
-  }, { timestamps: { createdAt: 'created_at' } });
+}, { timestamps: { createdAt: 'created_at' } });
 
 var TripModel = mongoose.model('Trip', tripSchema);
 
