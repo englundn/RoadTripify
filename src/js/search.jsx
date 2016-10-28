@@ -12,6 +12,9 @@ var weatherRequest = require('../mixins/weatherRequest');
 var selectSongs = require('../mixins/selectSongs');
 var spotifyRequest = require('../mixins/spotifyRequest');
 
+//Global vars
+var finalPlaylistID = '';
+
 var App = React.createClass({
   mixins: [API],
 
@@ -25,6 +28,7 @@ var App = React.createClass({
       context.geocodeLatLng(route.end_location.lng(), route.end_location.lat(), function(endAddress) {
         var trip = JSON.stringify({
           tripname: tripname,
+          playlist_uri: finalPlaylistID,
           start_latitude: route.start_location.lat() + '',
           start_longitude: route.start_location.lng() + '',
           end_latitude: route.end_location.lat() + '',
@@ -101,6 +105,8 @@ var App = React.createClass({
                       spotifyRequest.addSongsToPlaylist(userId, accessToken, playlistId, songUriArray, function(error, results) {
                         if (error) {
                           console.error('could not add songs to playlist');
+                        } else {
+                          finalPlaylistID = playlistId;
                         }
                       });
                     }
@@ -126,7 +132,7 @@ var App = React.createClass({
       <SideMenu />
       <main>
         <div className="row">
-					<div className="col s12 m9 l10">
+          <div className="col s12 m9 l10">
             <form className="col s6">
               <div className="row">
                 <div className="input-field col s5">
@@ -152,7 +158,7 @@ var App = React.createClass({
               </div>
             </form>
           </div>
-				</div>
+        </div>
       </main>
       </div>
     );
