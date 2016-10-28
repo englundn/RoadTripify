@@ -58,6 +58,62 @@ var App = React.createClass({
     });
   },
 
+  generateNewPlaylist: () => {
+    console.log('before function');
+    var waitingForMapData = setInterval(function() {
+      if (window.directionsResponse) {
+        directionsRequest(window.directionsResponse, Date.now(), (placeArray) => {
+          var counter = 0;
+          var arrayofSongArrays = new Array(placeArray.length);
+          placeArray.map((place, index) => {
+            return weatherRequest(place.lat, place.lng, place.time, (placeWeather) => {
+              return selectSongs(placeWeather.time, placeWeather.weather, songArray => {
+                arrayofSongArrays[index] = songArray;
+                counter++;
+                return songArray;
+              });
+            });
+          });
+          var waitingForSongData = setInterval(function() {
+            if (counter === placeArray.length) {
+              var songUriArray = [].concat.apply([], arrayofSongArrays);
+              console.log('songUriArray: ', songUriArray);
+              clearInterval(waitingForSongData);
+              var headers = {
+                'Content-Type': 'application/json',
+              };
+              API.getApi('/api/user', headers, function(err, data) {
+                if (data.result !== 'error') {
+                  console.log(data.result);
+                  var userId = data.result.username;
+                  var accessToken = data.result.accessToken;
+                  var playlistName = '' + new Date();
+                  var isPlaylistPublic = false;
+                  spotifyRequest.makeNewPlaylist(userId, accessToken, playlistName, isPlaylistPublic, function(error, results) {
+                    if (error) {
+                      console.error('could not make playlist');
+                    } else {
+                      var playlistId = results.id;
+                      console.log(playlistId);
+                      spotifyRequest.addSongsToPlaylist(userId, accessToken, playlistId, songUriArray, function(error, results) {
+                        console.log('addign songs to playlist', error);
+                      });
+                    }
+                  });
+                }
+              });
+
+
+              return songUriArray;
+            }
+          }, 1000);
+
+          clearInterval(waitingForMapData);
+        });
+      }
+    }, 1000); 
+  },
+
   render() {
     return (
       <div>
@@ -81,7 +137,7 @@ var App = React.createClass({
                   <label>Destination</label>
                 </div>
                 <div className="input-field col s2">
-                  <input className="save-trip-btn btn waves-effect waves-light" type="button" id="submit" value="Preview Trip"></input>
+                  <input className="save-trip-btn btn waves-effect waves-light" type="button" id="submit" onClick={this.generateNewPlaylist} value="Preview Trip"></input>
                 </div>
               </div>
               <div className="row">
