@@ -18,7 +18,7 @@ var finalPlaylistID = '';
 var App = React.createClass({
   getInitialState: function() {
     return {
-      playlistUri: ""
+      playlistUri: ''
     };
   },
 
@@ -109,13 +109,20 @@ var App = React.createClass({
                     } else {
                       var playlistId = results.id;
                       console.log(playlistId);
-                      spotifyRequest.addSongsToPlaylist(userId, accessToken, playlistId, songUriArray, function(error, results) {
+                      spotifyRequest.addSongsToPlaylist(userId, accessToken, playlistId, songUriArray.slice(0, 100), function(error, results) {
                         if (error) {
                           console.error('could not add songs to playlist');
                         } else {
+                          if (songUriArray.length > 100) {
+                            spotifyRequest.addSongsToPlaylist(userId, accessToken, playlistId, songUriArray.slice(100, 200), function(error, results) {
+                              if (error) {
+                                console.error('could not add songs to playlist');
+                              }
+                            });
+                          }
                           finalPlaylistID = playlistId;
                           context.setState({
-                            playlistUri: "https://embed.spotify.com/?uri=spotify:user:"+userId+":playlist:"+playlistId
+                            playlistUri: 'https://embed.spotify.com/?uri=spotify:user:' + userId + ':playlist:' + playlistId
                           });
                         }
                       });
