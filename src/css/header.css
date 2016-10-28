@@ -7,7 +7,7 @@
   float: right;
 }
 
-.logout-btn, .username {
+.logout-btn, .username, .profilepic {
   float: right;
   display: inline-block;
   color: white;

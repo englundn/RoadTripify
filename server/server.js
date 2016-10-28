@@ -102,7 +102,9 @@ app.get('/api/user', function(req, res) {
   if (req.session.passport && req.session.passport.user) {
     res.send({result: {
       username: req.session.passport.user.username,
-      accessToken: spotifyAccessToken
+      accessToken: spotifyAccessToken,
+      photos: req.session.passport.user.photos,
+      displayName: req.session.passport.user.displayName
     }});
   } else {
     res.send({result: 'error'});
