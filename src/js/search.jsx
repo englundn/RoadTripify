@@ -22,32 +22,32 @@ var App = React.createClass({
     var context = this;
 
     context.geocodeLatLng(route.start_location.lng(), route.start_location.lat(), function(startAddress) {
-        context.geocodeLatLng(route.end_location.lng(), route.end_location.lat(), function(endAddress) {
-            var trip = JSON.stringify({
-              tripname: tripname,
-              start_latitude: route.start_location.lat() + '',
-              start_longitude: route.start_location.lng() + '',
-              end_latitude: route.end_location.lat() + '',
-              end_longitude: route.end_location.lng() + '',
-              start_address: startAddress,
-              end_address: endAddress
-            });
-
-            console.log('Saving trip', trip);
-            var headers = {
-               'Content-Type': 'application/json'
-            };
-            API.postApi('/api/trip', headers, trip, function(err, data) {
-              console.log(data);
-            })
-
+      context.geocodeLatLng(route.end_location.lng(), route.end_location.lat(), function(endAddress) {
+        var trip = JSON.stringify({
+          tripname: tripname,
+          start_latitude: route.start_location.lat() + '',
+          start_longitude: route.start_location.lng() + '',
+          end_latitude: route.end_location.lat() + '',
+          end_longitude: route.end_location.lng() + '',
+          start_address: startAddress,
+          end_address: endAddress
         });
+
+        console.log('Saving trip', trip);
+        var headers = {
+          'Content-Type': 'application/json'
+        };
+        API.postApi('/api/trip', headers, trip, function(err, data) {
+          console.log(data);
+        });
+
+      });
     });
   },
 
   geocodeLatLng: function(long, lati, cb) {
     var geocoder = new google.maps.Geocoder;
-    var latlng = {lat: lati,lng: long};
+    var latlng = {lat: lati, lng: long};
     geocoder.geocode({'location': latlng}, function(results, status) {
       if (status === 'OK') {
         if (results[1]) {
@@ -63,7 +63,6 @@ var App = React.createClass({
   },
 
   generateNewPlaylist: () => {
-    console.log('before function');
     var waitingForMapData = setInterval(function() {
       if (window.directionsResponse) {
         directionsRequest(window.directionsResponse, Date.now(), (placeArray) => {
@@ -100,19 +99,16 @@ var App = React.createClass({
                       var playlistId = results.id;
                       console.log(playlistId);
                       spotifyRequest.addSongsToPlaylist(userId, accessToken, playlistId, songUriArray, function(error, results) {
-                        console.log('addign songs to playlist', error);
+                        if (error) {
+                          console.error('could not add songs to playlist');
+                        }
                       });
                     }
                   });
                 }
               });
-
-
-              return songUriArray;
             }
           }, 1000);
-
-
           clearInterval(waitingForMapData);
         });
       }
