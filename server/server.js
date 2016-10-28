@@ -110,8 +110,9 @@ app.get('/api/user', function(req, res) {
 });
 
 app.get('/api/history', function(req, res) {
-  Trip.findAll(function(err, data) {
-
+  var userId = req.session.passport.user_id;
+  Trip.find({user_id: userId}, function(err, data) {
+    res.send({result: data});
   });
 });
 
@@ -168,7 +169,7 @@ app.get('/callback',
     User.findOne({ username: req.session.passport.user.username }, function(err, data) {
       if (!data) {
         User.insertOne({ username: req.session.passport.user.username }, function(err, data2) {
-          req.session.progress.user_id = data2._id;
+          req.session.passport.user_id = data2._id;
           req.session.save();
         });
       } else {
