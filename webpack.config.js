@@ -1,3 +1,4 @@
+//This file configures webpack to run on the production files
 var path = require('path');
 var webpack = require('webpack');
 var page = require('./page.json');

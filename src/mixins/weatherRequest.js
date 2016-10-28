@@ -1,6 +1,6 @@
 var apiKey = require('../config/apiKeys.js').accuWeatherApiKey;
 
-var weatherRequest = function(latitude, longitude, datetime, callback) {
+var weatherRequest = (latitude, longitude, datetime, callback) => {
 //send get request for location key
   $.ajax({
     method: 'GET',
@@ -9,7 +9,7 @@ var weatherRequest = function(latitude, longitude, datetime, callback) {
     data: { apikey: apiKey, 
       q: '' + latitude + ',' + longitude},
     dataType: 'jsonp',
-    success: function(response) {
+    success: (response) => {
       var locationKey = response.Key;
       //send get request for hourly forecast using location key
       $.ajax({
@@ -19,7 +19,7 @@ var weatherRequest = function(latitude, longitude, datetime, callback) {
         data: { apikey: apiKey, 
           details: true},
         dataType: 'jsonp',
-        success: function(response) {
+        success: (response) => {
           //find hour with closest time to datetime input
           var closestIndex = 0;
           var currentClosest = Math.abs(new Date(response[0].DateTime) - datetime);
@@ -37,12 +37,12 @@ var weatherRequest = function(latitude, longitude, datetime, callback) {
             weather: response[closestIndex]
           });
         }, 
-        error: function(response) {
+        error: (response) => {
           console.log(response);
         }
       });
     }, 
-    error: function(response) {
+    error: (response) => {
       console.log(response);
     }
   });

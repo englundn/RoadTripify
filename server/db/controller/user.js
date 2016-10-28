@@ -1,19 +1,19 @@
 var UserModel = require('../model/user');
 
 //Find One User by condition
-function findOne(parameter, callback) {
+var findOne = (parameter, callback) => {
   UserModel.findOne(parameter, callback);
-}
+};
 
 //Find All Users
-function findAll(callback) {
+var findAll = (callback) => {
   UserModel.find({}, callback);
-}
+};
 
 //Inser One User
-function insertOne(user, callback) {
+var insertOne = (user, callback) => {
   UserModel.create(user, callback);
-}
+};
 
 
 exports.findOne = findOne;

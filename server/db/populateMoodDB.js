@@ -25,7 +25,7 @@ for (var plist in playlistUris) {
   request(options, function(error, response, body) {
     if (error) {
       console.log(error);
-    } else if (!error && response.statusCode == 200) {
+    } else if (!error && response.statusCode === 200) {
 
       var info = JSON.parse(body);
       var uris = [];
@@ -37,12 +37,11 @@ for (var plist in playlistUris) {
       // console.log(uri, ' ', playlistUris[uri], ' ', uris);
 
       SavedPlaylistController.insertOne({
-        playlist_name:  playlistUris[uri],
+        playlist_name: playlistUris[uri],
         playlist_id: uri,
         uri_array: JSON.stringify(uris)}, function(err, entry) {
         console.log('saved to database ', entry);
-        }
-      );
+      });
     }
   });    
 }

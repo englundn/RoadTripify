@@ -22,12 +22,12 @@ var App = React.createClass({
       'Content-Type': 'application/json'
     };
     API.getApi('/api/history', headers, function(err, data) {
-      context.setState({trips:data.result});
+      context.setState({trips: data.result});
 
       $('.collapsible').collapsible({
-        accordion : false // A setting that changes the collapsible behavior to expandable instead of the default accordion style
+        accordion: false // A setting that changes the collapsible behavior to expandable instead of the default accordion style
       });  
-    })
+    });
   },
 
   render: function() {
@@ -43,16 +43,16 @@ var App = React.createClass({
           <div className="collapsible-body"><p>Lorem ipsum dolor sit amet.</p></div>
         </li>
       );
-    })
+    });
 
     return (
       <div>
       <header>
-      	<Header />
+        <Header />
       </header>
       <SideMenu />
       <main>
-      	<div className="row">
+        <div className="row">
           <div>History</div>
           <ul className="collapsible" data-collapsible="accordion">
             {tripDataNode}

@@ -6,7 +6,7 @@ var APIMixin = require('./APImixin');
 // 'Songs for Sunsets',
 // 'Mood Booster' /* happy songs */
 
-var getTime = function(time) {
+var getTime = (time) => {
   if (6 <= time.getHours() && time.getHours() < 12) {
     return 'morning';
   } else if (12 <= time.getHours() && time.getHours() < 17) {
@@ -18,7 +18,7 @@ var getTime = function(time) {
   }
 };
 
-var getWeather = function(weatherIcon) {
+var getWeather = (weatherIcon) => {
   if ([1, 2, 3, 4, 5, 30].indexOf(weatherIcon) > -1) {
     return 'sunny';
   } else if ([6, 7, 8, 11, 31, 32].indexOf(weatherIcon) > -1) {
@@ -32,7 +32,7 @@ var getWeather = function(weatherIcon) {
   }
 };
 
-var selectSongs = function(time, weather, callback) {
+var selectSongs = (time, weather, callback) => {
   var playlist = '';
   var weatherDescrip = getWeather(weather.WeatherIcon);
   var timeDescrip = getTime(time);
@@ -69,25 +69,25 @@ var selectSongs = function(time, weather, callback) {
   var remainingTime = 60000 * 30;
 
   var headers = {
-     'Content-Type': 'application/json'
+    'Content-Type': 'application/json'
   };
 
-  APIMixin.postApi('/api/savedplaylists', headers, JSON.stringify({name: playlist}), function(err, data) {
+  APIMixin.postApi('/api/savedplaylists', headers, JSON.stringify({name: playlist}), (err, data) => {
     if (err) {
       console.log(err);
     }
     var songChoices = JSON.parse(data);
-    var song_uris = [];
+    var songUris = [];
     var randIndex = 0;
 
     while (remainingTime > 120000) {
       randIndex = Math.floor(Math.random() * songChoices.length);
-      song_uris.push(songChoices[randIndex][0]);
+      songUris.push(songChoices[randIndex][0]);
       remainingTime -= songChoices[randIndex][1];
       songChoices.splice(randIndex, 1);
     }
 
-    callback(song_uris);
+    callback(songUris);
   });
 
 };

@@ -6,7 +6,7 @@ var API = require('../mixins/APImixin');
 
 var header = React.createClass({
   mixins: [API],
-	componentDidMount: function() {
+  componentDidMount: function() {
     var context = this;
     var headers = {
       'Content-Type': 'application/json',
@@ -22,21 +22,21 @@ var header = React.createClass({
       } else {
         $('.menu-btn').hide();
       }
-    })
+    });
 
-		$(".button-collapse").sideNav();
-	},
+    $('.button-collapse').sideNav();
+  },
   render() {
     return (
       <div className="header-content">
-      	<a href="#" data-activates="nav-mobile" className="menu-btn button-collapse top-nav full hide-on-large-only">
-      		<i className="material-icons">menu</i>
-      	</a>
+        <a href="#" data-activates="nav-mobile" className="menu-btn button-collapse top-nav full hide-on-large-only">
+          <i className="material-icons">menu</i>
+        </a>
         <div className="displayInfo">
         </div>
       </div>
-    )
+    );
   }
-})
+});
 
 module.exports = header;

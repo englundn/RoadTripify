@@ -53,7 +53,7 @@ var getDirections = (response, departureTime, callback) => {
 
 
   //generates a location/time object at a middle time that occurs between a start object and an end object
-  var interpolator = function(start, end, middleTime) {
+  var interpolator = (start, end, middleTime) => {
     var deltaTime = (middleTime - start.time) / (end.time - start.time);
     var deltaLat = (end.lat - start.lat) * deltaTime;
     var deltaLng = (end.lng - start.lng) * deltaTime;
@@ -78,7 +78,7 @@ var getDirections = (response, departureTime, callback) => {
   }
 
   //Converts time properties into date objects
-  halfHourWayPoints = halfHourWayPoints.map(function(waypoint) {
+  halfHourWayPoints = halfHourWayPoints.map((waypoint) => {
     waypoint.time = new Date(waypoint.time);
     return waypoint;
   });
