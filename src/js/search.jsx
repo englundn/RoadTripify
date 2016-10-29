@@ -43,12 +43,15 @@ var App = React.createClass({
           'end_address': endAddress
         });
 
-        console.log('Saving trip', trip);
+        // console.log('Saving trip', trip);
         var headers = {
           'Content-Type': 'application/json'
         };
         API.postApi('/api/trip', headers, trip, function(err, data) {
-          console.log(data);
+          if (err) {
+            console.error(err);
+          }
+          // console.log(data);
         });
 
       });
@@ -61,7 +64,7 @@ var App = React.createClass({
     geocoder.geocode({'location': latlng}, function(results, status) {
       if (status === 'OK') {
         if (results[1]) {
-          console.log(results);
+          // console.log(results);
           cb(results[0].formatted_address);
         } else {
           window.alert('No results found');
@@ -91,14 +94,14 @@ var App = React.createClass({
           var waitingForSongData = setInterval(function() {
             if (counter === placeArray.length) {
               var songUriArray = [].concat.apply([], arrayofSongArrays);
-              console.log('songUriArray: ', songUriArray);
+              // console.log('songUriArray: ', songUriArray);
               clearInterval(waitingForSongData);
               var headers = {
                 'Content-Type': 'application/json',
               };
               API.getApi('/api/user', headers, function(err, data) {
                 if (data.result !== 'error') {
-                  console.log(data.result);
+                  // console.log(data.result);
                   var userId = data.result.username;
                   var accessToken = data.result.accessToken;
                   var playlistName = '' + new Date();
@@ -108,7 +111,7 @@ var App = React.createClass({
                       console.error('could not make playlist');
                     } else {
                       var playlistId = results.id;
-                      console.log(playlistId);
+                      // console.log(playlistId);
                       spotifyRequest.addSongsToPlaylist(userId, accessToken, playlistId, songUriArray.slice(0, 100), function(error, results) {
                         if (error) {
                           console.error('could not add songs to playlist');

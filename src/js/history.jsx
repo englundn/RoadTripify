@@ -39,7 +39,7 @@ var App = React.createClass({
     var context = this;
     var tripDataNode = this.state.trips.map(function(trip, index) {
       return (
-        <li>
+        <li key={index}>
           <div className="collapsible-header row">
             <div className="title col s8">{trip.trip_name}</div>
             <div className="time col s4">{jQuery.timeago(trip.created_at)}</div>
