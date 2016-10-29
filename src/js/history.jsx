@@ -12,7 +12,8 @@ var App = React.createClass({
   mixins: [API],
   getInitialState: function() {
     return {
-      trips: [] 
+      trips: [],
+      username: '' 
     };
   },
   componentDidMount() {
@@ -24,13 +25,18 @@ var App = React.createClass({
     API.getApi('/api/history', headers, function(err, data) {
       context.setState({trips: data.result});
 
-      $('.collapsible').collapsible({
-        accordion: false // A setting that changes the collapsible behavior to expandable instead of the default accordion style
-      });  
+      API.getApi('/api/user', headers, function(err, data) {
+        context.setState({username: data.result.username});
+        $('.collapsible').collapsible({
+          accordion: false // A setting that changes the collapsible behavior to expandable instead of the default accordion style
+        });     
+      });     
+
     });
   },
 
   render: function() {
+    var context = this;
     var tripDataNode = this.state.trips.map(function(trip, index) {
       return (
         <li>
@@ -40,7 +46,9 @@ var App = React.createClass({
             <div className="address-from col s12"><span className="sub-title">From:</span> {trip.start_address}</div>
             <div className="address-to col s12"><span className="sub-title">To:</span> {trip.end_address}</div>
           </div>
-          <div className="collapsible-body"><p>Lorem ipsum dolor sit amet.</p></div>
+          <div className="collapsible-body">
+            <iframe src={'https://embed.spotify.com/?uri=spotify:user:' + context.state.username + ':playlist:' + trip.playlist_uri} width="400" height="380" frameBorder="0" allowTransparency="true"></iframe>
+          </div>
         </li>
       );
     });

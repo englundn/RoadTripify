@@ -125,7 +125,7 @@ app.post('/api/trip', function(req, res) {
     playlist_uri: req.body.playlist_uri,
     start_latitude: req.body.start_latitude,
     start_longitude: req.body.start_longitude,
-    start_addresss: req.body.start_addresss,
+    start_address: req.body.start_address,
     end_latitude: req.body.end_latitude,
     end_longitude: req.body.end_longitude,
     end_address: req.body.end_address
