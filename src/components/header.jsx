@@ -12,12 +12,16 @@ var header = React.createClass({
       'Content-Type': 'application/json',
     };
     API.getApi('/api/user', headers, function(err, data) {
-      console.log(data);
       if (data.result !== 'error') {
         //username
+        var username = data.result.displayName === null ? data.result.username : data.result.displayName;
+
         $('.displayInfo').html('<a class="logout-btn" href="/logout">Logout</a>' +
-                               '<div class="username">' + data.result.displayName + '</div>' +
-                               '<img class="profilepic header-content" src="' + data.result.photos[0] + '"></img>');
+                               '<div class="username">' + username + '</div>');
+
+        if (data.result.displayName !== null) {
+          $('.displayInfo').append('<img class="profilepic header-content" src="' + data.result.photos[0] + '"></img>');
+        }
 
       } else {
         $('.menu-btn').hide();
