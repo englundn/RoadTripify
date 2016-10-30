@@ -52,6 +52,7 @@ var App = React.createClass({
             console.error(err);
           }
           // console.log(data);
+          finalPlaylistID = '';
         });
 
       });
@@ -123,10 +124,21 @@ var App = React.createClass({
                               }
                             });
                           }
+                          var deletePlaylistID = finalPlaylistID;
                           finalPlaylistID = playlistId;
                           context.setState({
                             playlistUri: 'https://embed.spotify.com/?uri=spotify:user:' + userId + ':playlist:' + playlistId
                           });
+                          if (deletePlaylistID !== '') {
+                            // console.log('deleting', deletePlaylistID);
+                            spotifyRequest.deletePlaylist(userId, accessToken, deletePlaylistID, function(error, results) {
+                              if (error) {
+                                console.log(error);
+                              } else {
+                                // console.log('successfully deleted', deletePlaylistID);
+                              }
+                            });
+                          }
                         }
                       });
                     }
