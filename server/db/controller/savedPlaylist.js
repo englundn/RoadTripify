@@ -10,7 +10,7 @@ var findAll = (callback) => {
   SavedPlaylistModel.find({}, callback);
 };
 
-//Inser One Trip
+//Insert One Trip
 var insertOne = (playlist, callback) => {
   SavedPlaylistModel.create(playlist, callback);
 };

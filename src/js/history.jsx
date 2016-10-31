@@ -7,16 +7,21 @@ var SideMenu = require('../components/sideMenu');
 
 //Mixins
 var API = require('../mixins/APImixin');
+var spotifyRequest = require('../mixins/spotifyRequest');
 
 var App = React.createClass({
   mixins: [API],
-  getInitialState: function() {
+  getInitialState: () => {
     return {
       trips: [],
       username: '' 
     };
   },
   componentDidMount() {
+    this.runBeforeRendering();
+  },
+
+  runBeforeRendering() {
     var context = this;
     //this.geocodeLatLng(-122.4089664, 37.7836966);
     var headers = {
@@ -26,13 +31,44 @@ var App = React.createClass({
       context.setState({trips: data.result});
 
       API.getApi('/api/user', headers, function(err, data) {
-        context.setState({username: data.result.username});
+        context.setState({
+          username: data.result.username,
+          accessToken: data.result.accessToken
+        });
         $('.collapsible').collapsible({
           accordion: false // A setting that changes the collapsible behavior to expandable instead of the default accordion style
         });     
       });     
 
     });
+  },
+  deleteTrip: function(deletePlaylistId) {
+    var context = this;
+    // remove playlist from spotify
+    var userId = context.state.username;
+    var accessToken = context.state.accessToken;
+    spotifyRequest.deletePlaylist(userId, accessToken, deletePlaylistId, function(error, results) {
+      if (error) {
+        console.log(error);
+      } else {
+        console.log('successfully deleted', deletePlaylistId);
+      }
+    });
+    //remove trip from database
+    var headers = {
+      'Content-Type': 'application/json'
+    };
+    API.postApi('/api/deletesavedplaylists', headers, JSON.stringify({'playlist_uri': deletePlaylistId}), function(err, data) {
+      if (err) {
+        console.log(err);
+      } else {
+        console.log(data);
+        context.runBeforeRendering();
+      }
+    });
+    //re-render the page or just remove specific list entry
+
+
   },
 
   render: function() {
@@ -48,6 +84,7 @@ var App = React.createClass({
           </div>
           <div className="collapsible-body">
             <iframe src={'https://embed.spotify.com/?uri=spotify:user:' + context.state.username + ':playlist:' + trip.playlist_uri} width="400" height="380" frameBorder="0" allowTransparency="true"></iframe>
+            <span className="delete"><input className="btn waves-effect waves-light" type="button" onClick={() => context.deleteTrip(trip.playlist_uri)} value="Delete Playlist"></input></span>
           </div>
         </li>
       );

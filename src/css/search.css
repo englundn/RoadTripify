@@ -47,3 +47,7 @@ html, body {
 .playlist {
   float: right;
 }
+
+#warningmessage {
+  display: none;
+}
