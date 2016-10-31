@@ -5,3 +5,8 @@
 .time {
   text-align: right;
 }
+
+.page-title {
+  font-size: 35px;
+  font-weight: bold;
+}

@@ -61,7 +61,7 @@ var App = React.createClass({
       <SideMenu />
       <main>
         <div className="row">
-          <div>History</div>
+          <div className="page-title">My Trips</div>
           <ul className="collapsible" data-collapsible="accordion">
             {tripDataNode}
           </ul>
