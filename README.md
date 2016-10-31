@@ -1,7 +1,5 @@
 [![Stories in Ready](https://badge.waffle.io/IndecipherableSuggestions/IndecipherableSuggestions.png?label=ready&title=Ready)](https://waffle.io/IndecipherableSuggestions/IndecipherableSuggestions)
-# Project Name
-
-> RoadTrip Mood Music
+# RoadTrip Mood Music
 
 ## Team
 
@@ -29,33 +27,41 @@
 - To view your saved trips, go to the 'History' page
 - Click on a trip to view its playlist and the option of deleting it
 
-## Requirements
+## Software Stack
 
-- Node 0.10.x
-- Redis 2.6.x
-- Postgresql 9.1.x
-- etc
-- etc
+- MongoDB
+- Express.js
+- React.js
+- Node.js
+
+## Dependencies
+-Passport
+-Mongoose
+
+## Development Dependencies
+
+-Babel
+-Chai
+-Gulb
+-Mocha
+-Nodemon
+-Webpack
 
 ## Development
 
 ### Installing Dependencies
 
 From within the root directory:
-
 ```sh
 npm install
 ```
 ### Building dist files with webpack and starting mongoDB and node server
 
 Front end:
-
 ```sh
 npm run dev
 ```
-
 Back end:
-
 ```sh
 npm run build
 npm start
@@ -63,7 +69,6 @@ npm start
 Make a copy of apiKeys.example.js, name it apiKeys.js, and add Google Maps and AccuWeather API keys.
 
 To populate mongoDB with archived playlists:
-
 ```sh
 mongod
 ```

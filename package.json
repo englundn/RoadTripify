@@ -7,18 +7,19 @@
     "test": "webpack -p --config webpacktest.js && open ./test/specRunner.html",
     "start": "node ./server/server.js",
     "build": "gulp build && webpack -p --config webpack.config.js --progress --profile --colors",
-    "dev": "./node_modules/.bin/webpack-dev-server -d --host 0.0.0.0 --config webpack.config.js --content-base src/ --colors --hot --progress --inline --watch"
+    "dev": "./node_modules/.bin/webpack-dev-server -d --host 0.0.0.0 --config webpack.config.js --content-base src/ --colors --hot --progress --inline --watch",
+    "server-dev": "nodemon ./server/server.js"
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/anxsaiyuki/IndecipherableSuggestions.git"
+    "url": "git+https://github.com/IndecipherableSuggestions/IndecipherableSuggestions.git"
   },
   "author": "",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/anxsaiyuki/IndecipherableSuggestions/issues"
+    "url": "https://github.com/IndecipherableSuggestions/IndecipherableSuggestions/issues"
   },
-  "homepage": "https://github.com/anxsaiyuki/IndecipherableSuggestions#readme",
+  "homepage": "https://github.com/IndecipherableSuggestions/IndecipherableSuggestions#readme",
   "dependencies": {
     "@google/maps": "^0.3.0",
     "babel-core": "^6.17.0",
@@ -26,7 +27,6 @@
     "babel-preset-es2015": "^6.16.0",
     "babel-preset-react": "^6.16.0",
     "body-parser": "^1.15.2",
-    "browserify": "^13.1.1",
     "chai": "^3.5.0",
     "del": "^2.2.2",
     "ejs": "^2.5.2",
