@@ -76,6 +76,16 @@ var App = React.createClass({
     $('#' + id).fadeIn().delay('1000').fadeOut();
   },
 
+  startLoading: function() {
+    $('.preloader-wrapper').show();
+    $('.progress').show();
+  },
+
+  endLoading: function() {
+    $('.preloader-wrapper').hide();
+    $('.progress').hide();
+  },
+
   geocodeLatLng: function(long, lati, cb) {
     var geocoder = new google.maps.Geocoder;
     var latlng = {lat: lati, lng: long};
@@ -97,7 +107,7 @@ var App = React.createClass({
     if ($('#start').val() === '' || $('#end').val() === '') {
       this.showErrorMessage('warning-message', 'Please include both a start and destination.');
     } else {
-
+      this.startLoading();
       var context = this;
       //wait for google maps data the load
       var waitingForMapData = setInterval(function() {
@@ -152,6 +162,8 @@ var App = React.createClass({
                             context.setState({
                               playlistUri: 'https://embed.spotify.com/?uri=spotify:user:' + userId + ':playlist:' + playlistId
                             });
+                            context.endLoading();
+                            $('iframe').show();
                             //if user generates a new playlist before saving the old one, delete the old one
                             if (deletePlaylistID !== '') {
                               // console.log('deleting', deletePlaylistID);
@@ -202,6 +214,9 @@ var App = React.createClass({
                 </div>
                 <div className="input-field col s4">
                   <input className="save-trip-btn btn waves-effect waves-light" type="button" id="submit" onClick={this.generateNewPlaylist} value={this.state.playlistUri ? 'New Playlist' : 'Preview Trip'}></input>
+                    <div className="progress">
+                      <div className="indeterminate"></div>
+                    </div>
                 </div>
               </div>
               <div className="row">
@@ -226,6 +241,19 @@ var App = React.createClass({
               </div>
             </form>
             <div className="col s4">
+              <div className="loading-wrapper">
+                <div className="preloader-wrapper big active">
+                  <div className="spinner-layer spinner-teal-only">
+                    <div className="circle-clipper left">
+                      <div className="circle"></div>
+                    </div><div className="gap-patch">
+                      <div className="circle"></div>
+                    </div><div className="circle-clipper right">
+                      <div className="circle"></div>
+                    </div>
+                  </div>
+                </div>
+              </div>
               <iframe src={this.state.playlistUri} width="400" height="380" frameBorder="0" allowTransparency="true"></iframe>
             </div>
           </div>

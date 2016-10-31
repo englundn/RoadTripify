@@ -40,6 +40,7 @@ var initMap = () => {
     map: map
   });
 
+  
 
   directionsDisplay.setPanel(document.getElementById('right-panel'));
 
@@ -79,6 +80,7 @@ var initMap = () => {
 
 
   var onChangeHandler = () => {
+    $('#map').removeClass('center');
     calculateAndDisplayRoute(directionsService, directionsDisplay);
   };
   
