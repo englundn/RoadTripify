@@ -55,6 +55,12 @@ var initMap = () => {
     console.log(start);
     console.log(end);
 
+    if (!(start && end)) {
+      $('#warningmessage').show();
+      return;
+    }
+    $('#warningmessage').hide();
+
     directionsService.route({
       origin: start,
       destination: end,

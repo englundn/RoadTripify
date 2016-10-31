@@ -77,6 +77,8 @@ var App = React.createClass({
   },
 
   generateNewPlaylist: function() {
+
+
     var context = this;
     var waitingForMapData = setInterval(function() {
       if (window.directionsResponse) {
@@ -178,6 +180,9 @@ var App = React.createClass({
                 <div className="input-field col s2">
                   <input className="save-trip-btn btn waves-effect waves-light" type="button" id="submit" onClick={this.generateNewPlaylist} value={this.state.playlistUri ? 'New Playlist' : 'Preview Trip'}></input>
                 </div>
+              </div>
+              <div className="row">
+              <p id="warningmessage">Please include both a start and destination.</p>
               </div>
               <div className="row">
                 <div className="input-field col s5">
