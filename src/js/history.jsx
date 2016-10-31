@@ -76,9 +76,9 @@ var App = React.createClass({
       return (
         <li key={index}>
           <div className="collapsible-header row">
-            <div className="title col s8">{trip.trip_name}</div>
+            <div className="title col s12">{trip.trip_name}</div>
+            <div className="address-from col s8"><span className="sub-title">From:</span> {trip.start_address}</div>
             <div className="time col s4">{jQuery.timeago(trip.created_at)}</div>
-            <div className="address-from col s12"><span className="sub-title">From:</span> {trip.start_address}</div>
             <div className="address-to col s12"><span className="sub-title">To:</span> {trip.end_address}</div>
           </div>
           <div className="collapsible-body">
