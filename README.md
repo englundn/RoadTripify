@@ -26,7 +26,6 @@
 - Click 'Preview Trip' to display driving directions and generate a Spotify playlist
 - If you don't like the playlist, click 'New Playlist' to make a new one for the same route
 - Once you like the playlist, type in a name for the trip and click 'Save Trip'
-- If you don't name the playlist, a name will be generated for you.
 - To view your saved trips, go to the 'History' page
 - Click on a trip to view its playlist and the option of deleting it
 
@@ -46,8 +45,8 @@ From within the root directory:
 
 ```sh
 npm install
-
 ```
+### Building dist files with webpack and starting mongoDB and node server
 
 Front end:
 
