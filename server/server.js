@@ -76,7 +76,7 @@ app.use(bodyParser.urlencoded({ extended: true }));
 app.get('/', 
   ensureAuthenticated, 
   function(req, res) {
-    res.render('index');
+    res.render('search');
   }
 );
 
