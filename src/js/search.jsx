@@ -53,6 +53,10 @@ var App = React.createClass({
           }
           // console.log(data);
           finalPlaylistID = '';
+          $('#tripname').val('');
+          $('#start').val('');
+          $('#end').val('');
+          $('#savedmessage').show();
         });
 
       });
@@ -166,18 +170,18 @@ var App = React.createClass({
       <SideMenu />
       <main>
         <div className="row">
-          <div className="col s12 m9 l10">
-            <form className="col s6">
+          <div className="col s12 m12 l12">
+            <form className="col s8">
               <div className="row">
-                <div className="input-field col s5">
+                <div className="input-field col s4">
                   <input id="start" type="text" className="validate autocomplete"></input>
                   <label>Start or 'Use My Location'</label>
                 </div>
-                <div className="input-field col s5">
+                <div className="input-field col s4">
                   <input id="end" type="text" className="validate"></input>
                   <label>Destination</label>
                 </div>
-                <div className="input-field col s2">
+                <div className="input-field col s4">
                   <input className="save-trip-btn btn waves-effect waves-light" type="button" id="submit" onClick={this.generateNewPlaylist} value={this.state.playlistUri ? 'New Playlist' : 'Preview Trip'}></input>
                 </div>
               </div>
@@ -193,11 +197,15 @@ var App = React.createClass({
                   <input className="btn waves-effect waves-light" type="button" onClick={this.saveTrip} value="Save Trip"></input>
                 </div>
               </div>
+              <div id="savedmessage">
+                <p>Trip Saved!</p>
+              </div>
             </form>
-            <div className="playlist">
+            <div className="col s4">
               <iframe src={this.state.playlistUri} width="400" height="380" frameBorder="0" allowTransparency="true"></iframe>
             </div>
           </div>
+
         </div>
       </main>
       </div>

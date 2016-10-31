@@ -51,3 +51,8 @@ html, body {
 #warningmessage {
   display: none;
 }
+
+#savedmessage {
+  display: none;
+  margin-left: 5px;
+}
