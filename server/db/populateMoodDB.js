@@ -18,7 +18,7 @@ for (var plist in playlistUris) {
     method: 'GET', 
     url: 'https://api.spotify.com/v1/users/spotify/playlists/' + plist + '/tracks', 
     headers: {
-      /* will have to change the access token when it expires */
+      /* will have to change the access token when it expires, see instructions in readme */
       'Authorization': 'Bearer ' + accessToken,
     }
   };
