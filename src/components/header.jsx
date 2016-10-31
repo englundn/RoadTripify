@@ -34,7 +34,7 @@ var header = React.createClass({
     return (
       <div className="header-content">
         <a href="#" data-activates="nav-mobile" className="menu-btn button-collapse top-nav full hide-on-large-only">
-          <img className="burger-icon" src="./img/burgerIcon.png"></img>
+          <img className="burger-icon" src="../img/burgerIcon.png"></img>
         </a>
         <div className="displayInfo">
         </div>

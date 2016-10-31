@@ -61,7 +61,7 @@ var initMap = () => {
       return;
     }
     //$('#warning-message').hide();
-
+    $('#map').removeClass('center');
     directionsService.route({
       origin: start,
       destination: end,
@@ -80,7 +80,7 @@ var initMap = () => {
 
 
   var onChangeHandler = () => {
-    $('#map').removeClass('center');
+    
     calculateAndDisplayRoute(directionsService, directionsDisplay);
   };
   
