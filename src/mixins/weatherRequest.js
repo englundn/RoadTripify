@@ -1,7 +1,9 @@
 var apiKey = require('../config/apiKeys.js').accuWeatherApiKey;
-
+//we use the accuweather api -- http://developer.accuweather.com. Make an account to make your own api keys
 var weatherRequest = (latitude, longitude, datetime, callback) => {
-//send get request for location key
+  // example usage
+  // weatherRequest('37.7836966', '-122.4111551', new Date('10-20-2016 17:48:00'), function(obj) { console.log(obj); });
+  //send get request for location key
   $.ajax({
     method: 'GET',
     url: 'http://dataservice.accuweather.com/locations/v1/cities/geoposition/search',
@@ -50,6 +52,3 @@ var weatherRequest = (latitude, longitude, datetime, callback) => {
 
 //for now, comment this out for mocha tests to run in browser
 module.exports = weatherRequest;
-
-// example usage
-// weatherRequest('37.7836966', '-122.4111551', new Date('10-20-2016 17:48:00'), function(obj) { console.log(obj); });

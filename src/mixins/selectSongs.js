@@ -18,6 +18,7 @@ var getTime = (time) => {
   }
 };
 
+//see http://developer.accuweather.com/weather-icons for weather icon data dictionary
 var getWeather = (weatherIcon) => {
   if ([1, 2, 3, 4, 5, 30].indexOf(weatherIcon) > -1) {
     return 'sunny';
@@ -33,6 +34,23 @@ var getWeather = (weatherIcon) => {
 };
 
 var selectSongs = (time, weather, callback) => {
+  //This function has some basic logic that selects random songs from one of the 6 mood playlists saved to our database
+  //based on time and weather. This logic could be greatly expanded by using a wider variety of mood playlists and 
+  //incorporating other factors like terrain and urbanicity of the location. The spotify api gives you a lot of track-level
+  //information that could also be utilized (like the danceability of the song, etc)
+  //example case
+  // var date = new Date();
+  // var weatherEx= {
+  //   "DateTime": "2016-10-26T11:00:00-07:00",
+  //   "EpochDateTime": 1477504800,
+  //   "WeatherIcon": 6,
+  //   "IconPhrase": "Mostly cloudy",
+  //   ....
+  // };
+
+  // selectSongs(date, weatherEx, function(songs) {
+  //   console.log(songs);
+  // });
   var playlist = '';
   var weatherDescrip = getWeather(weather.WeatherIcon);
   var timeDescrip = getTime(time);
@@ -93,16 +111,3 @@ var selectSongs = (time, weather, callback) => {
 };
 
 module.exports = selectSongs;
-
-//example case
-// var date = new Date();
-// var weatherEx= {
-//   "DateTime": "2016-10-26T11:00:00-07:00",
-//   "EpochDateTime": 1477504800,
-//   "WeatherIcon": 6,
-//   "IconPhrase": "Mostly cloudy",
-// };
-
-// selectSongs(date, weatherEx, function(songs) {
-//   console.log(songs);
-// });

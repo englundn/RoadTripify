@@ -1,5 +1,4 @@
 {
-    "index": "./src/js/index.jsx",
     "login": "./src/js/login.jsx",
     "search": "./src/js/search.jsx",
     "history": "./src/js/history.jsx"

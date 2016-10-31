@@ -1,35 +1,3 @@
-// var googleMapsApiKey = require('../config/apiKeys').googleMapsApiKey;
-// var googleMapsClient = require('@google/maps').createClient({
-//   key: googleMapsApiKey
-// });
-
-// // Makes a call to the google maps directions API to get route data
-// // https://developers.google.com/maps/documentation/javascript/directions
-// var getDirections = function(origin, destination, departureTime, callback) {
-  
-//   //Sample input: getDirections('San Francisco, CA', 'Seattle, WA', Date.now());
-
-//   // Sample output: [ { time: Wed Oct 26 2016 14:08:30 GMT-0700 (PDT),
-//   //                   lat: 37.7692352,
-//   //                   lng: -122.417882 },
-//   //                 { time: Wed Oct 26 2016 14:35:38 GMT-0700 (PDT),
-//   //                   lat: 38.033548887189546,
-//   //                   lng: -122.18291239098039 },
-//   //                 { time: Wed Oct 26 2016 15:05:38 GMT-0700 (PDT),
-//   //                   lat: 38.403755004836604,
-//   //                   lng: -121.86944486156862 }]
-  
-//   var request = {
-//     'origin': origin,
-//     'destination': destination,
-//     'departure_time': departureTime,
-//     'mode': 'driving',
-//     'traffic_model': 'best_guess',
-//     'optimize': true,
-//   };
-
-//   googleMapsClient.directions(request, function(error, response) {
-
 var getDirections = (response, departureTime, callback) => {
   var currentTime = departureTime;
 
@@ -83,12 +51,7 @@ var getDirections = (response, departureTime, callback) => {
     return waypoint;
   });
 
-  // console.log(halfHourWayPoints);
   callback(halfHourWayPoints);
 };
-
-// };
-
-// getDirections('San Francisco, CA', 'Seattle, WA', Date.now());
 
 module.exports = getDirections;
