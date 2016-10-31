@@ -24,8 +24,8 @@ app.use(session({
 //=============================================
 //Passport for spotify
 
-var apiKey = require('../config/apiKeys.js').spotifyApiKey;
-var apiSecret = require('../config/apiKeys.js').spotifyApiSecret;
+var apiKey = require('../src/config/apiKeys.js').spotifyApiKey;
+var apiSecret = require('../src/config/apiKeys.js').spotifyApiSecret;
 var spotifyAccessToken = '';
 
 passport.serializeUser(function(user, done) {
