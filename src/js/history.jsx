@@ -66,7 +66,6 @@ var App = React.createClass({
         context.runBeforeRendering();
       }
     });
-    //re-render the page or just remove specific list entry
 
 
   },
