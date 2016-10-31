@@ -11,5 +11,7 @@ module.exports = {
     'INSERT API KEY',
     'INSERT API KEY',
   ][ Math.floor(Math.random() * 4) ],
+  spotifyApiKey: 'INSERT API KEY',
+  spotifyApiSecret: 'INSERT API KEY',
   spotifyAccessToken: 'INSERT ACCESS TOKEN'
 };
