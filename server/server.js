@@ -148,6 +148,19 @@ app.post('/api/savedplaylists', function(req, res) {
   });
 });
 
+app.post('/api/deletesavedplaylists', function(req, res) {
+  console.log('delete in server.js'); 
+  console.log(req.body.playlist_uri);
+  Trip.find(req.body, (err, data) => {
+    if (err) {
+      console.log(err);
+    } else {
+      data[0].remove();
+    }
+  });
+  res.send();
+});
+
 // GET /auth/spotify
 //   Use passport.authenticate() as route middleware to authenticate the
 //   request. The first step in spotify authentication will involve redirecting
