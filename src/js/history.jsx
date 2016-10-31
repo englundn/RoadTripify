@@ -34,8 +34,12 @@ var App = React.createClass({
 
     });
   },
-  deletePlaylist: () => {
-    console.log('deletePlaylist');
+  deleteTrip: () => {
+    console.log('deleteTrip');
+    //remove playlist from spotify
+    //remove trip from database
+    //re-render the page or just remove specific list entry
+
   },
 
   render: function() {
@@ -51,7 +55,7 @@ var App = React.createClass({
           </div>
           <div className="collapsible-body">
             <iframe src={'https://embed.spotify.com/?uri=spotify:user:' + context.state.username + ':playlist:' + trip.playlist_uri} width="400" height="380" frameBorder="0" allowTransparency="true"></iframe>
-            <span className="delete"><input className="btn waves-effect waves-light" type="button" onClick={this.deletePlaylist} value="Delete Playlist"></input></span>
+            <span className="delete"><input className="btn waves-effect waves-light" type="button" onClick={this.deleteTrip} value="Delete Playlist"></input></span>
           </div>
         </li>
       );
