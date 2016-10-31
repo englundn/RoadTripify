@@ -93,7 +93,7 @@ var App = React.createClass({
     });
   },
 
-generateNewPlaylist: function() {
+  generateNewPlaylist: function() {
     if ($('#start').val() === '' || $('#end').val() === '') {
       this.showErrorMessage('warning-message', 'Please include both a start and destination.');
     } else {
