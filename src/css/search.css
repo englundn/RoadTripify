@@ -48,8 +48,16 @@ html, body {
   float: right;
 }
 
-#warningmessage {
+.message-wrapper {
+  height: 15px;
+}
+
+#warning-message, #warning-trip-name, #success-trip-name {
   display: none;
+}
+
+#warning-message, #warning-trip-name {
+  color: red;
 }
 
 #savedmessage {

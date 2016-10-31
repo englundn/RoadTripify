@@ -56,10 +56,10 @@ var initMap = () => {
     console.log(end);
 
     if (!(start && end)) {
-      $('#warningmessage').show();
+      //$('#warning-message').show();
       return;
     }
-    $('#warningmessage').hide();
+    //$('#warning-message').hide();
 
     directionsService.route({
       origin: start,
