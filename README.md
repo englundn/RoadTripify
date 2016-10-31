@@ -21,7 +21,14 @@
 
 ## Usage
 
-> Some usage instructions
+- Log in directly with your Spotify account
+- Type in a starting location or 'Use My Location' and a destination
+- Click 'Preview Trip' to display driving directions and generate a Spotify playlist
+- If you don't like the playlist, click 'New Playlist' to make a new one for the same route
+- Once you like the playlist, type in a name for the trip and click 'Save Trip'
+- If you don't name the playlist, a name will be generated for you.
+- To view your saved trips, go to the 'History' page
+- Click on a trip to view its playlist and the option of deleting it
 
 ## Requirements
 
@@ -38,14 +45,40 @@
 From within the root directory:
 
 ```sh
-sudo npm install -g bower
 npm install
-bower install
+
+```
+
+Front end:
+
+```sh
+npm run dev
+```
+
+Back end:
+
+```sh
+npm run build
+npm start
+```
+Make a copy of apiKeys.example.js, name it apiKeys.js, and add Google Maps and AccuWeather API keys.
+
+To populate mongoDB with archived playlists:
+
+```sh
+mongod
+```
+Visit website at localhost:8888
+Log in with Spotify
+A Spotify access token will be logged to the console window where the server is running
+Copy it and paste it into src/config/apiKeys.js
+```sh
+node server/db/populateMoodDB.js
 ```
 
 ### Roadmap
 
-View the project roadmap [here](LINK_TO_PROJECT_ISSUES)
+View the project roadmap [here](https://github.com/IndecipherableSuggestions/IndecipherableSuggestions/issues)
 
 
 ## Contributing
