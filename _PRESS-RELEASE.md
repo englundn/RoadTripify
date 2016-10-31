@@ -32,13 +32,13 @@ Once the project moves into development, the press release can be used as a touc
   > By taking in information about the road trip and pairing it with real-time driving and weather conditions, we are able to pick songs that perfectly align with your trip, every step of the way.
 
 ## Quote from You ##
-  > "This product is by far the greatest Spotify playlist generator we have yet to create."
+  > "Never spend an hour making your roadtrip playlist again!"
 
 ## How to Get Started ##
   > If you're logged in to Spotify, just type in your start and end addresses and RoadTrip Mood Music does the rest.
 
 ## Customer Quote ##
-  > "I look forward to using this product as soon as it exists!" -Kim, 31
+  > "Normally I just sing the one song I know on repeat when I'm driving. Now, with no effort on my part, I can listen to great music that aligns with my mood!" -Kim, 31
 
 ## Closing and Call to Action ##
-  > Head on over to localhost:3000 to give it a try!
+  > Head on over to RoadTrip Mood Music to give it a try!
