@@ -7,9 +7,13 @@ var SideMenu = require('../components/sideMenu');
 
 //Mixins
 var API = require('../mixins/APImixin');
+//directionsRequest takes in start and end locations and outputs an array of location coordinates for every half hour of the trip
 var directionsRequest = require('../mixins/directionsRequest');
+//weatherRequest takes in the output of directionsRequest and outputs the weather forecast for each point
 var weatherRequest = require('../mixins/weatherRequest');
+//selectSongs takes in the output of weatherRequest and selects songs based on the weather and time of day at each point
 var selectSongs = require('../mixins/selectSongs');
+//spotifyRequest contains the functions that interact with the spotify api. Some take in the output of selectSongs
 var spotifyRequest = require('../mixins/spotifyRequest');
 
 //Global vars
@@ -95,6 +99,7 @@ var App = React.createClass({
     } else {
 
       var context = this;
+      //wait for google maps data the load
       var waitingForMapData = setInterval(function() {
         if (window.directionsResponse) {
           directionsRequest(window.directionsResponse, Date.now(), (placeArray) => {
@@ -109,6 +114,7 @@ var App = React.createClass({
                 });
               });
             });
+            //wait for spotify data the load
             var waitingForSongData = setInterval(function() {
               if (counter === placeArray.length) {
                 var songUriArray = [].concat.apply([], arrayofSongArrays);
@@ -146,6 +152,7 @@ var App = React.createClass({
                             context.setState({
                               playlistUri: 'https://embed.spotify.com/?uri=spotify:user:' + userId + ':playlist:' + playlistId
                             });
+                            //if user generates a new playlist before saving the old one, delete the old one
                             if (deletePlaylistID !== '') {
                               // console.log('deleting', deletePlaylistID);
                               spotifyRequest.deletePlaylist(userId, accessToken, deletePlaylistID, function(error, results) {
