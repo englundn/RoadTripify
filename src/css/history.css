@@ -6,6 +6,10 @@
   text-align: right;
 }
 
+.delete {
+  float: right;
+  padding: 0 0.75rem;
+}
 .page-title {
   font-size: 35px;
   font-weight: bold;

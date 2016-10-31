@@ -48,6 +48,7 @@ var App = React.createClass({
           </div>
           <div className="collapsible-body">
             <iframe src={'https://embed.spotify.com/?uri=spotify:user:' + context.state.username + ':playlist:' + trip.playlist_uri} width="400" height="380" frameBorder="0" allowTransparency="true"></iframe>
+            <span className="delete"><input className="btn waves-effect waves-light" type="button" onClick={() => console.log('click')} value="Delete Playlist"></input></span>
           </div>
         </li>
       );
