@@ -1,5 +1,5 @@
 [![Stories in Ready](https://badge.waffle.io/IndecipherableSuggestions/IndecipherableSuggestions.png?label=ready&title=Ready)](https://waffle.io/IndecipherableSuggestions/IndecipherableSuggestions)
-# RoadTrip Mood Music
+# RoadTripify
 
 ## Team
 
@@ -9,6 +9,7 @@
 
 ## Table of Contents
 
+1. [Screenshots](#Screenshots)
 1. [Usage](#Usage)
 1. [Requirements](#requirements)
 1. [Development](#development)
@@ -16,6 +17,11 @@
     1. [Tasks](#tasks)
 1. [Team](#team)
 1. [Contributing](#contributing)
+
+## Screenshots
+
+![Alt text](/src/img/search.png?raw=true)
+![Alt text](/src/img/history.png?raw=true)
 
 ## Usage
 
@@ -35,17 +41,17 @@
 - Node.js
 
 ## Dependencies
--Passport
--Mongoose
+- Passport
+- Mongoose
 
 ## Development Dependencies
 
--Babel
--Chai
--Gulb
--Mocha
--Nodemon
--Webpack
+- Babel
+- Chai
+- Gulb
+- Mocha
+- Nodemon
+- Webpack
 
 ## Development
 
@@ -82,7 +88,7 @@ node server/db/populateMoodDB.js
 
 ### Roadmap
 
-View the project roadmap [here](https://github.com/IndecipherableSuggestions/IndecipherableSuggestions/issues)
+View the project roadmap [here](https://github.com/IndecipherableSuggestions/RoadTripify/issues)
 
 
 ## Contributing
